@@ -2,15 +2,15 @@ package com.gg.proj.model;
 
 import java.util.List;
 
-public class PagedBook {
+public class PagedBookModel {
 
     private List<BookModel> bookList;
     private Integer totalPages;
 
-    public PagedBook() {
+    public PagedBookModel() {
     }
 
-    public PagedBook(List<BookModel> bookList, Integer totalPages) {
+    public PagedBookModel(List<BookModel> bookList, Integer totalPages) {
         this.bookList = bookList;
         this.totalPages = totalPages;
     }

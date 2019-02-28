@@ -41,9 +41,7 @@ public class BookConsumer extends WebServiceGatewaySupport {
         request.setSize(size);
         request.setKeyWord(keyWord);
 
-        SearchBooksResponse response = (SearchBooksResponse) getWebServiceTemplate().marshalSendAndReceive(SERVICE_LOCATION, request,
+        return (SearchBooksResponse) getWebServiceTemplate().marshalSendAndReceive(SERVICE_LOCATION, request,
                 new SoapActionCallback("http://proj.gg.com/service/library-client"));
-        return response;
     }
-
 }

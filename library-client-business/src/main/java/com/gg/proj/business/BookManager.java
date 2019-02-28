@@ -1,11 +1,11 @@
 package com.gg.proj.business;
 
+import com.gg.proj.business.mapper.BookMapper;
 import com.gg.proj.consumer.BookConsumer;
 import com.gg.proj.consumer.wsdl.GetBookResponse;
 import com.gg.proj.consumer.wsdl.ListAllBooksResponse;
 import com.gg.proj.consumer.wsdl.SearchBooksResponse;
-import com.gg.proj.model.BookModel;
-import com.gg.proj.model.PagedBook;
+import com.gg.proj.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,33 +16,46 @@ public class BookManager {
 
     private BookConsumer bookConsumer;
 
-    private MapperWorker mapperWorker;
+    private BookMapper bookMapper;
 
     @Autowired
-    public BookManager(BookConsumer bookConsumer, MapperWorker mapperWorker) {
+    public BookManager(BookConsumer bookConsumer, BookMapper bookMapper) {
         this.bookConsumer = bookConsumer;
-        this.mapperWorker = mapperWorker;
+        this.bookMapper = bookMapper;
     }
 
     public BookModel getBookById(Integer id) {
         GetBookResponse response;
         response = bookConsumer.getBook(id);
-        return mapperWorker.bookXsdToBookModel(response.getBook());
+        return bookMapper.bookXsdToBookModel(response.getBook());
     }
 
     public List<BookModel> getAllBooks() {
         ListAllBooksResponse response;
         response = bookConsumer.getAllBooks();
-        return mapperWorker.listXsdToListModel(response.getBooks());
+        return bookMapper.listXsdToListModel(response.getBooks());
     }
 
-    public PagedBook searchBooks(int page, int size, String keyWord) {
-        PagedBook pagedBook = new PagedBook();
+    public PagedBookModel getPagedBooks(int page, int size, String keyWord) {
+        PagedBookModel pagedBookModel = new PagedBookModel();
         SearchBooksResponse response;
         response = bookConsumer.searchBooks(page, size, keyWord);
-        pagedBook.put(mapperWorker.listXsdToListModel(response.getBooks()),
+        pagedBookModel.put(bookMapper.listXsdToListModel(response.getBooks()),
                 response.getTotalPages());
 
-        return pagedBook;
+        return pagedBookModel;
+    }
+
+    public SearchResultModel searchBooks(int page, int size, String keyWord) {
+        SearchBooksResponse response;
+        response = bookConsumer.searchBooks(page, size, keyWord);
+
+        List<BookModel> books = bookMapper.bookListToBookModelList(response.getBooks());
+        List<LanguageModel> languages = bookMapper.languageListToLanguageModelList(response.getLanguages());
+        List<LibraryModel> libraries = bookMapper.libraryListToLibraryModelList(response.getLibraries());
+        List<TopicModel> topics = bookMapper.topicListToTopicModelList(response.getTopics());
+
+        return new SearchResultModel(books,languages,libraries,topics,response.getTotalPages(),response.getKeyWord());
+
     }
 }
