@@ -2,39 +2,67 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>All books</title>
+    <title>Search</title>
     <link rel="stylesheet" type="text/css"
-          th:href="@{css/bootstrap.min.css}"/>
+          th:href="@{/css/bootstrap.min.css}"/>
 </head>
 <body>
-<h3>Books paged</h3>
+<div class="container-fluid">
+    <h3>Search books</h3>
 
-<div>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>AUTHOR</th>
-            <th>TITLE</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="b:${books}">
-            <td th:text="${b.id}"></td>
-            <td th:text="${b.author}"></td>
-            <td><a th:href="@{book(id=${b.id})}" th:text="${b.title}" ></a></td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-<div>
-    <ul class="nav nav-pills">
-        <li class="nav-item" th:each="p,status:${pages}">
-            <a th:class="(${currentPage}==${status.index})?'nav-link active':'nav-link'"
-               th:href="@{paged_books(page=${status.index},size=${size})}"
-               th:text="${status.count}"></a>
-        </li>
-    </ul>
+    <div class="row">
+        <div class="col-3">
+            <div class="form-group">
+                <select class="form-control" th:field="${languages}" id="Language">
+                    <option value="0">Select a language</option>
+                    <option th:each="language : ${languages}" th:value="${language.id}" th:text="${language.name}"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <select class="form-control" th:field="${libraries}" id="Library">
+                    <option value="0">Select a library</option>
+                    <option th:each="library : ${libraries}" th:value="${library.id}" th:text="${library.name}"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <select class="form-control" th:field="${topics}" id="Topic">
+                    <option value="0">Select a topic</option>
+                    <option th:each="topic : ${topics}" th:value="${topic.id}" th:text="${topic.name}"></option>
+                </select>
+            </div>
+        </div>
+        <div class="col">
+            <div>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>AUTHOR</th>
+                        <th>TITLE</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="b:${books}">
+                        <td th:text="${b.id}"></td>
+                        <td th:text="${b.author}"></td>
+                        <td><a th:href="@{get(id=${b.id})}" th:text="${b.title}"></a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <ul class="nav nav-pills">
+                    <li class="nav-item" th:each="p,status:${pages}">
+                        <a th:class="(${currentPage}==${status.index})?'nav-link active':'nav-link'"
+                           th:href="@{search(page=${status.index},size=${size})}"
+                           th:text="${status.count}"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
 </div>
 </body>
 

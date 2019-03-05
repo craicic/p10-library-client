@@ -4,37 +4,38 @@
     <meta charset="UTF-8"/>
     <title>All books</title>
     <link rel="stylesheet" type="text/css"
-          th:href="@{css/bootstrap.min.css}"/>
+          th:href="@{/css/bootstrap.min.css}"/>
 </head>
 <body>
 <h3>Books paged</h3>
-
-<div>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>AUTHOR</th>
-            <th>TITLE</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="b:${books}">
-            <td th:text="${b.id}"></td>
-            <td th:text="${b.author}"></td>
-            <td><a th:href="@{book(id=${b.id})}" th:text="${b.title}" ></a></td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-<div>
-    <ul class="nav nav-pills">
-        <li class="nav-item" th:each="p,status:${pages}">
-            <a th:class="(${currentPage}==${status.index})?'nav-link active':'nav-link'"
-               th:href="@{paged_books(page=${status.index},size=${size})}"
-               th:text="${status.count}"></a>
-        </li>
-    </ul>
+<div class="container-fluid">
+    <div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>AUTHOR</th>
+                <th>TITLE</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="b:${books}">
+                <td th:text="${b.id}"></td>
+                <td th:text="${b.author}"></td>
+                <td><a th:href="@{book(id=${b.id})}" th:text="${b.title}"></a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <ul class="nav nav-pills">
+            <li class="nav-item" th:each="p,status:${pages}">
+                <a th:class="(${currentPage}==${status.index})?'nav-link active':'nav-link'"
+                   th:href="@{paged_books(page=${status.index},size=${size})}"
+                   th:text="${status.count}"></a>
+            </li>
+        </ul>
+    </div>
 </div>
 </body>
 
