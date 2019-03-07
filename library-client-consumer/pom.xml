@@ -28,6 +28,11 @@
             <groupId>org.springframework.ws</groupId>
             <artifactId>spring-ws-core</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
         <!--==== MODULES ====-->
         <dependency>
             <groupId>com.gg.proj.model</groupId>
@@ -51,20 +56,67 @@
                 <version>0.12.3</version>
                 <executions>
                     <execution>
+                        <id>books-generation</id>
                         <goals>
                             <goal>generate</goal>
                         </goals>
+                        <configuration>
+                            <schemaLanguage>WSDL</schemaLanguage>
+                            <generatePackage>com.gg.proj.consumer.wsdl.books</generatePackage>
+                            <schemas>
+                                <schema>
+                                    <url>http://localhost:8080/ws/books.wsdl</url>
+                                </schema>
+                            </schemas>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>users-generation</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <schemaLanguage>WSDL</schemaLanguage>
+                            <generatePackage>com.gg.proj.consumer.wsdl.users</generatePackage>
+                            <schemas>
+                                <schema>
+                                    <url>http://localhost:8080/ws/users.wsdl</url>
+                                </schema>
+                            </schemas>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>loans-generation</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <schemaLanguage>WSDL</schemaLanguage>
+                            <generatePackage>com.gg.proj.consumer.wsdl.loans</generatePackage>
+                            <schemas>
+                                <schema>
+                                    <url>http://localhost:8080/ws/loans.wsdl</url>
+                                </schema>
+                            </schemas>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>profiles-generation</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <schemaLanguage>WSDL</schemaLanguage>
+                            <generatePackage>com.gg.proj.consumer.wsdl.profiles</generatePackage>
+                            <schemas>
+                                <schema>
+                                    <url>http://localhost:8080/ws/profiles.wsdl</url>
+                                </schema>
+                            </schemas>
+                        </configuration>
                     </execution>
                 </executions>
-                <configuration>
-                    <schemaLanguage>WSDL</schemaLanguage>
-                    <generatePackage>com.gg.proj.consumer.wsdl</generatePackage>
-                    <schemas>
-                        <schema>
-                            <url>http://localhost:8080/ws/books.wsdl</url>
-                        </schema>
-                    </schemas>
-                </configuration>
+
             </plugin>
             <!-- end::wsdl[] -->
         </plugins>

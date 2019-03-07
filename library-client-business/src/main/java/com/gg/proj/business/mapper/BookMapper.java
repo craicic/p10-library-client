@@ -1,9 +1,6 @@
 package com.gg.proj.business.mapper;
 
-import com.gg.proj.consumer.wsdl.Book;
-import com.gg.proj.consumer.wsdl.Language;
-import com.gg.proj.consumer.wsdl.Library;
-import com.gg.proj.consumer.wsdl.Topic;
+import com.gg.proj.consumer.wsdl.books.*;
 import com.gg.proj.model.BookModel;
 import com.gg.proj.model.LanguageModel;
 import com.gg.proj.model.LibraryModel;
@@ -27,4 +24,6 @@ public interface BookMapper {
     List<LibraryModel> libraryListToLibraryModelList(List<Library> libraries);
 
     List<TopicModel> topicListToTopicModelList(List<Topic> topics);
+
+    BookModel bookFullToBookModel(BookFull bookFull);
 }

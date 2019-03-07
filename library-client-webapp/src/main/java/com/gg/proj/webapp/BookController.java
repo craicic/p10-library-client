@@ -1,20 +1,18 @@
 package com.gg.proj.webapp;
 
 import com.gg.proj.business.BookManager;
-import com.gg.proj.model.BookModel;
-import com.gg.proj.model.PagedBookModel;
-import com.gg.proj.model.SearchResultModel;
+import com.gg.proj.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
-public class BookController {
+public class BookController  {
 
     private BookManager bookManager;
 
@@ -52,7 +50,7 @@ public class BookController {
         return "paged_books";
     }
 
-    @RequestMapping(value = "/book/search", method = RequestMethod.GET)
+    @GetMapping(value = "/book/search")
     public String searchBooks(Model model,
                               @RequestParam(defaultValue = "0", required = false) int page,
                               @RequestParam(defaultValue = "5", required = false) int size,
@@ -68,6 +66,24 @@ public class BookController {
         model.addAttribute("currentPage", page);
         model.addAttribute("size", size);
         model.addAttribute("keyWord", keyWord);
+        model.addAttribute("formResult", new FormResultModel());
         return "search";
+    }
+
+    @RequestMapping(value= "/book/filter")
+    public String filterBooks(Model model,
+                              @RequestParam(defaultValue = "0", required = false) int page,
+                              @RequestParam(defaultValue = "5", required = false) int size,
+                              @RequestParam(defaultValue = "", required = false) String keyWord,
+                              @ModelAttribute FormResultModel formResult) {
+        PagedBookModel result = bookManager.filterBooks(page, size, keyWord, formResult.getLanguageId(), formResult.getLibraryId()
+                , formResult.getTopicId(), /*todo remove placeholder*/ true);
+        model.addAttribute("books", result.getBookList());
+        int[] pages = new int[result.getTotalPages()];
+        model.addAttribute("pages", pages);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("size", size);
+        model.addAttribute("keyWord", keyWord);
+        return "filter";
     }
 }

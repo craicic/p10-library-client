@@ -2,9 +2,7 @@ package com.gg.proj.business;
 
 import com.gg.proj.business.mapper.BookMapper;
 import com.gg.proj.consumer.BookConsumer;
-import com.gg.proj.consumer.wsdl.GetBookResponse;
-import com.gg.proj.consumer.wsdl.ListAllBooksResponse;
-import com.gg.proj.consumer.wsdl.SearchBooksResponse;
+import com.gg.proj.consumer.wsdl.books.*;
 import com.gg.proj.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -27,7 +25,7 @@ public class BookManager {
     public BookModel getBookById(Integer id) {
         GetBookResponse response;
         response = bookConsumer.getBook(id);
-        return bookMapper.bookXsdToBookModel(response.getBook());
+        return bookMapper.bookFullToBookModel(response.getBookFull());
     }
 
     public List<BookModel> getAllBooks() {
@@ -57,5 +55,15 @@ public class BookManager {
 
         return new SearchResultModel(books,languages,libraries,topics,response.getTotalPages(),response.getKeyWord());
 
+    }
+
+    public PagedBookModel filterBooks(int page, int size, String keyWord, Integer languageId, Integer libraryId, Integer topicId, boolean available) {
+        PagedBookModel pagedBookModel = new PagedBookModel();
+        FilterBooksResponse response;
+        response = bookConsumer.filterBooks(page, size, keyWord, languageId, libraryId, topicId, available);
+        pagedBookModel.put(bookMapper.listXsdToListModel(response.getBooks()),
+                response.getTotalPages());
+
+        return pagedBookModel;
     }
 }

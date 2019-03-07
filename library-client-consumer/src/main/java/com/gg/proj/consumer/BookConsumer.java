@@ -1,11 +1,13 @@
 package com.gg.proj.consumer;
 
-import com.gg.proj.consumer.wsdl.*;
+import com.gg.proj.consumer.wsdl.books.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
 
+@Component
 public class BookConsumer extends WebServiceGatewaySupport {
 
     private static final Logger log = LoggerFactory.getLogger(BookConsumer.class);
@@ -42,6 +44,20 @@ public class BookConsumer extends WebServiceGatewaySupport {
         request.setKeyWord(keyWord);
 
         return (SearchBooksResponse) getWebServiceTemplate().marshalSendAndReceive(SERVICE_LOCATION, request,
+                new SoapActionCallback("http://proj.gg.com/service/library-client"));
+    }
+
+    public FilterBooksResponse filterBooks(int page, int size, String keyWord, Integer languageId, Integer libraryId, Integer topicId, boolean available) {
+        FilterBooksRequest request = new FilterBooksRequest();
+        log.info("Request a paged list of books containing the key work : " + keyWord + ", at page " + page + " with " + size + " books per page");
+        request.setPage(page);
+        request.setSize(size);
+        request.setKeyWord(keyWord);
+        request.setLanguageId(languageId);
+        request.setLibraryId(libraryId);
+        request.setTopicId(topicId);
+        request.setAvailable(available);
+        return (FilterBooksResponse) getWebServiceTemplate().marshalSendAndReceive(SERVICE_LOCATION, request,
                 new SoapActionCallback("http://proj.gg.com/service/library-client"));
     }
 }

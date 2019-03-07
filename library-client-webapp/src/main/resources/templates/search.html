@@ -12,24 +12,32 @@
 
     <div class="row">
         <div class="col-3">
-            <div class="form-group">
-                <select class="form-control" th:field="${languages}" id="Language">
-                    <option value="0">Select a language</option>
-                    <option th:each="language : ${languages}" th:value="${language.id}" th:text="${language.name}"></option>
-                </select>
-            </div>
-            <div class="form-group">
-                <select class="form-control" th:field="${libraries}" id="Library">
-                    <option value="0">Select a library</option>
-                    <option th:each="library : ${libraries}" th:value="${library.id}" th:text="${library.name}"></option>
-                </select>
-            </div>
-            <div class="form-group">
-                <select class="form-control" th:field="${topics}" id="Topic">
-                    <option value="0">Select a topic</option>
-                    <option th:each="topic : ${topics}" th:value="${topic.id}" th:text="${topic.name}"></option>
-                </select>
-            </div>
+            <form th:action="@{filter}" th:object="${formResult}">
+                <input type="hidden" name="page" th:value="${currentPage}"/>
+                <input type="hidden" name="size" th:value="${size}"/>
+                <input type="hidden" name="keyWord" th:value="${keyWord}"/>
+                <div class="form-group">
+                    <select class="form-control" th:field="*{languageId}" id="Language">
+                        <option value="-1">Select a language</option>
+                        <option th:each="language : ${languages}" th:value="${language.id}"
+                                th:text="${language.name}"></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select class="form-control" th:field="*{libraryId}" id="Library">
+                        <option value="-1">Select a library</option>
+                        <option th:each="library : ${libraries}" th:value="${library.id}"
+                                th:text="${library.name}"></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select class="form-control" th:field="*{topicId}" id="Topic">
+                        <option value="-1">Select a topic</option>
+                        <option th:each="topic : ${topics}" th:value="${topic.id}" th:text="${topic.name}"></option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
         </div>
         <div class="col">
             <div>

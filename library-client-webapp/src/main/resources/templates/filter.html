@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Search</title>
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/css/bootstrap.min.css}"/>
+</head>
+<body>
+<div class="container-fluid">
+    <h3>Search books</h3>
+
+    <div class="row">
+        <div class="col-3">
+        </div>
+        <div class="col">
+            <div>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>AUTHOR</th>
+                        <th>TITLE</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="b:${books}">
+                        <td th:text="${b.id}"></td>
+                        <td th:text="${b.author}"></td>
+                        <td><a th:href="@{get(id=${b.id})}" th:text="${b.title}"></a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <ul class="nav nav-pills">
+                    <li class="nav-item" th:each="p,status:${pages}">
+                        <a th:class="(${currentPage}==${status.index})?'nav-link active':'nav-link'"
+                           th:href="@{search(page=${status.index},size=${size})}"
+                           th:text="${status.count}"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+</body>
+
+</html>
