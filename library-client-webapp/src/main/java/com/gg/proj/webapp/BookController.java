@@ -1,8 +1,10 @@
 package com.gg.proj.webapp;
 
+import com.gg.proj.authentication.UserInfo;
 import com.gg.proj.business.BookManager;
 import com.gg.proj.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -44,6 +46,8 @@ public class BookController  {
         PagedBookModel pagedBookModel = bookManager.getPagedBooks(page, size, keyWord);
         model.addAttribute("books", pagedBookModel.getBookList());
         int[] pages = new int[pagedBookModel.getTotalPages()];
+        UserInfo userInfo = (UserInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        System.out.println(userInfo.getId());
         model.addAttribute("pages", pages);
         model.addAttribute("size", size);
         model.addAttribute("currentPage", page);

@@ -16,4 +16,11 @@ public class CustomAuthToken extends UsernamePasswordAuthenticationToken {
         this.tokenUUID = tokenUUID;
     }
 
+    public UUID getTokenUUID() {
+        return tokenUUID;
+    }
+
+    public void setTokenUUID(UUID tokenUUID) {
+        this.tokenUUID = tokenUUID;
+    }
 }

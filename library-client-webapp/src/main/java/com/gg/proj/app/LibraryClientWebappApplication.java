@@ -7,6 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @ComponentScan(basePackages = {
         "com.gg.proj.consumer",
+        "com.gg.proj.consumer.connectors",
         "com.gg.proj.technical",
         "com.gg.proj.business",
         "com.gg.proj.business.mapper",
