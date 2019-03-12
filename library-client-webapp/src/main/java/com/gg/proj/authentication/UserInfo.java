@@ -2,6 +2,7 @@ package com.gg.proj.authentication;
 
 import javax.security.auth.Subject;
 import java.security.Principal;
+import java.util.Objects;
 import java.util.UUID;
 
 public class UserInfo implements Principal {
@@ -44,11 +45,37 @@ public class UserInfo implements Principal {
 
     @Override
     public boolean implies(Subject subject) {
-        return false;
+        if (subject == null)
+            return false;
+        return subject.getPrincipals().contains(this);
     }
 
     @Override
     public String getName() {
-        return null;
+        return pseudo;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserInfo userInfo = (UserInfo) o;
+        return pseudo.equals(userInfo.pseudo) &&
+                tokenUUID.equals(userInfo.tokenUUID) &&
+                id.equals(userInfo.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(pseudo, tokenUUID, id);
+    }
+
+    @Override
+    public String toString() {
+        return "UserInfo{" +
+                "pseudo='" + pseudo + '\'' +
+                ", tokenUUID=" + tokenUUID +
+                ", id=" + id +
+                '}';
     }
 }

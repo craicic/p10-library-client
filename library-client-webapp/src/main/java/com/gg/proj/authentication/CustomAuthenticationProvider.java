@@ -14,6 +14,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.HttpSession;
 import java.util.Collections;
 
 @Component
@@ -24,19 +25,20 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
     private UserManager userManager;
 
+    private HttpSession httpSession;
 
     private ProfileManager profileManager;
 
     @Autowired
-    public CustomAuthenticationProvider(UserManager userManager, ProfileManager profileManager) {
+    public CustomAuthenticationProvider(UserManager userManager, ProfileManager profileManager, HttpSession httpSession) {
         this.userManager = userManager;
         this.profileManager = profileManager;
-        System.out.println("const...");
+        this.httpSession = httpSession;
     }
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        log.info("Entering authenticate method...");
+
         String pseudo = authentication.getName();
         String password = authentication.getCredentials().toString();
 
@@ -44,7 +46,6 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
         if (token != null) {
             UserModel user = profileManager.getUser(token.getUserId(), token.getTokenUUID());
-            log.info("username : " + user.getUsername() + " and password : " + user.getPassword());
             UserInfo userInfo = new UserInfo(user.getUsername(), token.getTokenUUID(), user.getId());
 
             return new UsernamePasswordAuthenticationToken(userInfo, password, Collections.emptyList());

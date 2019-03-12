@@ -47,7 +47,8 @@ public class BookConnector extends WebServiceGatewaySupport {
 
     public FilterBooksResponse filterBooks(int page, int size, String keyWord, Integer languageId, Integer libraryId, Integer topicId, boolean available) {
         FilterBooksRequest request = new FilterBooksRequest();
-        log.info("Request a paged list of books containing the key work : " + keyWord + ", at page " + page + " with " + size + " books per page");
+        log.info("Filter books containing the key work : " + keyWord + ", at page " + page + " with " + size +
+                " books per page -- languageId : [" + languageId + "] -- libraryId : [" + libraryId + "] -- topicId : [" + topicId + "]");
         request.setPage(page);
         request.setSize(size);
         request.setKeyWord(keyWord);

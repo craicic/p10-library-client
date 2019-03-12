@@ -4,6 +4,8 @@ import com.gg.proj.business.mapper.BookMapper;
 import com.gg.proj.consumer.BookConsumer;
 import com.gg.proj.consumer.wsdl.books.*;
 import com.gg.proj.model.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,6 +13,7 @@ import java.util.List;
 
 @Component
 public class BookManager {
+    private static final Logger log = LoggerFactory.getLogger(BookManager.class);
 
     private BookConsumer bookConsumer;
 
@@ -63,7 +66,7 @@ public class BookManager {
         response = bookConsumer.filterBooks(page, size, keyWord, languageId, libraryId, topicId, available);
         pagedBookModel.put(bookMapper.listXsdToListModel(response.getBooks()),
                 response.getTotalPages());
-
+        log.debug("Result found : " + pagedBookModel);
         return pagedBookModel;
     }
 }

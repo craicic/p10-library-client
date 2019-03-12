@@ -36,7 +36,8 @@
                 <ul class="nav nav-pills">
                     <li class="nav-item" th:each="p,status:${pages}">
                         <a th:class="(${currentPage}==${status.index})?'nav-link active':'nav-link'"
-                           th:href="@{search(page=${status.index},size=${size})}"
+                           th:href="@{filter(page=${status.index},size=${size},keyWord=${keyWord},languageId=${languageId}
+                           ,libraryId=${libraryId},topicId=${topicId},available=${available})}"
                            th:text="${status.count}"></a>
                     </li>
                 </ul>

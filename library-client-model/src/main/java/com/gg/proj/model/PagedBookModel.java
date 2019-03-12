@@ -35,4 +35,12 @@ public class PagedBookModel {
         this.bookList = bookList;
         this.totalPages = totalPages;
     }
+
+    @Override
+    public String toString() {
+        return "PagedBookModel{" +
+                "bookList=" + bookList +
+                ", totalPages=" + totalPages +
+                '}';
+    }
 }

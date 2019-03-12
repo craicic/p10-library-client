@@ -2,19 +2,24 @@ package com.gg.proj.webapp;
 
 import com.gg.proj.authentication.UserInfo;
 import com.gg.proj.business.BookManager;
-import com.gg.proj.model.*;
+import com.gg.proj.model.BookModel;
+import com.gg.proj.model.FormResultModel;
+import com.gg.proj.model.PagedBookModel;
+import com.gg.proj.model.SearchResultModel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
-public class BookController  {
+public class BookController {
+
+    private static final Logger log = LoggerFactory.getLogger(BookController.class);
 
     private BookManager bookManager;
 
@@ -28,14 +33,14 @@ public class BookController  {
                        @RequestParam Integer id) {
         BookModel bookModel = bookManager.getBookById(id);
         model.addAttribute("book", bookModel);
-        return "book";
+        return "books/book";
     }
 
     @RequestMapping(value = "/book/all")
     public String books(Model model) {
         List<BookModel> listBookModel = bookManager.getAllBooks();
         model.addAttribute("books", listBookModel);
-        return "books";
+        return "books/books";
     }
 
     @RequestMapping(value = "/book/paged_book", method = RequestMethod.GET)
@@ -48,10 +53,11 @@ public class BookController  {
         int[] pages = new int[pagedBookModel.getTotalPages()];
         UserInfo userInfo = (UserInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         System.out.println(userInfo.getId());
+        System.out.println(userInfo.getTokenUUID().toString());
         model.addAttribute("pages", pages);
         model.addAttribute("size", size);
         model.addAttribute("currentPage", page);
-        return "paged_books";
+        return "books/paged_books";
     }
 
     @GetMapping(value = "/book/search")
@@ -71,10 +77,10 @@ public class BookController  {
         model.addAttribute("size", size);
         model.addAttribute("keyWord", keyWord);
         model.addAttribute("formResult", new FormResultModel());
-        return "search";
+        return "books/search";
     }
 
-    @RequestMapping(value= "/book/filter")
+    @RequestMapping(value = "/book/filter")
     public String filterBooks(Model model,
                               @RequestParam(defaultValue = "0", required = false) int page,
                               @RequestParam(defaultValue = "5", required = false) int size,
@@ -84,10 +90,15 @@ public class BookController  {
                 , formResult.getTopicId(), /*todo remove placeholder*/ true);
         model.addAttribute("books", result.getBookList());
         int[] pages = new int[result.getTotalPages()];
+        log.debug("pages : " + pages.length);
+        model.addAttribute("languageId",formResult.getLanguageId());
+        model.addAttribute("libraryId",formResult.getLibraryId());
+        model.addAttribute("topicId",formResult.getTopicId());
+        model.addAttribute("available", formResult.isAvailable());
         model.addAttribute("pages", pages);
         model.addAttribute("currentPage", page);
         model.addAttribute("size", size);
         model.addAttribute("keyWord", keyWord);
-        return "filter";
+        return "books/filter";
     }
 }
