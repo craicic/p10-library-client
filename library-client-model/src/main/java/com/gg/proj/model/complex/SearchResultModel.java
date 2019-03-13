@@ -1,4 +1,9 @@
-package com.gg.proj.model;
+package com.gg.proj.model.complex;
+
+import com.gg.proj.model.BookModel;
+import com.gg.proj.model.LanguageModel;
+import com.gg.proj.model.LibraryModel;
+import com.gg.proj.model.TopicModel;
 
 import java.util.List;
 

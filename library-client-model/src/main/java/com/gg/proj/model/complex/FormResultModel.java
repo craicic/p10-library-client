@@ -1,4 +1,4 @@
-package com.gg.proj.model;
+package com.gg.proj.model.complex;
 
 public class FormResultModel {
 

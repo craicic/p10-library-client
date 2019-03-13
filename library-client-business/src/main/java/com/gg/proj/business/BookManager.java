@@ -4,6 +4,8 @@ import com.gg.proj.business.mapper.BookMapper;
 import com.gg.proj.consumer.BookConsumer;
 import com.gg.proj.consumer.wsdl.books.*;
 import com.gg.proj.model.*;
+import com.gg.proj.model.complex.PagedBookModel;
+import com.gg.proj.model.complex.SearchResultModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
