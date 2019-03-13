@@ -52,8 +52,8 @@ public class BookController {
         model.addAttribute("books", pagedBookModel.getBookList());
         int[] pages = new int[pagedBookModel.getTotalPages()];
         UserInfo userInfo = (UserInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        System.out.println(userInfo.getId());
-        System.out.println(userInfo.getTokenUUID().toString());
+        log.debug("user ID : " + userInfo.getId());
+        log.debug("tokenUUID : " + userInfo.getTokenUUID().toString());
         model.addAttribute("pages", pages);
         model.addAttribute("size", size);
         model.addAttribute("currentPage", page);
@@ -87,13 +87,12 @@ public class BookController {
                               @RequestParam(defaultValue = "", required = false) String keyWord,
                               @ModelAttribute FormResultModel formResult) {
         PagedBookModel result = bookManager.filterBooks(page, size, keyWord, formResult.getLanguageId(), formResult.getLibraryId()
-                , formResult.getTopicId(), /*todo remove placeholder*/ true);
+                , formResult.getTopicId(), formResult.isAvailable());
         model.addAttribute("books", result.getBookList());
         int[] pages = new int[result.getTotalPages()];
-        log.debug("pages : " + pages.length);
-        model.addAttribute("languageId",formResult.getLanguageId());
-        model.addAttribute("libraryId",formResult.getLibraryId());
-        model.addAttribute("topicId",formResult.getTopicId());
+        model.addAttribute("languageId", formResult.getLanguageId());
+        model.addAttribute("libraryId", formResult.getLibraryId());
+        model.addAttribute("topicId", formResult.getTopicId());
         model.addAttribute("available", formResult.isAvailable());
         model.addAttribute("pages", pages);
         model.addAttribute("currentPage", page);

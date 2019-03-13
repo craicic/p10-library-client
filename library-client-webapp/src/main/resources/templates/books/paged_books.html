@@ -28,7 +28,7 @@
         <ul class="nav nav-pills">
             <li class="nav-item" th:each="p,status:${pages}">
                 <a th:class="(${currentPage}==${status.index})?'nav-link active':'nav-link'"
-                   th:href="@{paged_books(page=${status.index},size=${size})}"
+                   th:href="@{/book/paged_book(page=${status.index},size=${size})}"
                    th:text="${status.count}"></a>
             </li>
         </ul>

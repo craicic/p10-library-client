@@ -14,7 +14,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.http.HttpSession;
 import java.util.Collections;
 
 @Component
@@ -22,18 +21,14 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
     private static final Logger log = LoggerFactory.getLogger(CustomAuthenticationProvider.class);
 
-
     private UserManager userManager;
-
-    private HttpSession httpSession;
 
     private ProfileManager profileManager;
 
     @Autowired
-    public CustomAuthenticationProvider(UserManager userManager, ProfileManager profileManager, HttpSession httpSession) {
+    public CustomAuthenticationProvider(UserManager userManager, ProfileManager profileManager) {
         this.userManager = userManager;
         this.profileManager = profileManager;
-        this.httpSession = httpSession;
     }
 
     @Override

@@ -12,12 +12,14 @@ import org.springframework.context.annotation.ComponentScan;
         "com.gg.proj.business",
         "com.gg.proj.business.mapper",
         "com.gg.proj.webapp",
-        "com.gg.proj.authentication"})
+        "com.gg.proj.authentication",
+        "com.gg.proj.app"})
 public class LibraryClientWebappApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(LibraryClientWebappApplication.class, args);
     }
+
 
 }
 
