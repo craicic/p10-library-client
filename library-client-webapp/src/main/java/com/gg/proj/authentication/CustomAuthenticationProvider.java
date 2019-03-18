@@ -12,9 +12,13 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Collections;
+import java.util.List;
 
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
@@ -37,13 +41,18 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         String pseudo = authentication.getName();
         String password = authentication.getCredentials().toString();
 
-        TokenModel token = userManager.loginUser(pseudo, password);
+        String encodedPassword = Base64.getEncoder().encodeToString(password.getBytes());
+
+        TokenModel token = userManager.loginUser(pseudo, encodedPassword);
 
         if (token != null) {
             UserModel user = profileManager.getUser(token.getUserId(), token.getTokenUUID());
             UserInfo userInfo = new UserInfo(user.getUsername(), token.getTokenUUID(), user.getId());
 
-            return new UsernamePasswordAuthenticationToken(userInfo, password, Collections.emptyList());
+            List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+            authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+
+            return new UsernamePasswordAuthenticationToken(userInfo, password, authorities);
         } else {
             throw new BadCredentialsException("Authentication failed");
         }

@@ -64,7 +64,7 @@ public class BookController {
     public String searchBooks(Model model,
                               @RequestParam(defaultValue = "0", required = false) int page,
                               @RequestParam(defaultValue = "5", required = false) int size,
-                              @RequestParam(defaultValue = "", required = false) String keyWord) {
+                              @RequestParam(defaultValue = "", required = false, name = "keyWord") String keyWord) {
         SearchResultModel result = bookManager.searchBooks(page, size, keyWord);
 
         model.addAttribute("books", result.getBooks());

@@ -4,11 +4,18 @@
     <title id="pageTitle">Basic search</title>
 </head>
 <body>
+
+<header>
+    <div th:include="fragments/header :: navbar"></div>
+</header>
+
 <div class="container-fluid">
+    <div class="spacer"></div>
     <h3>Search books</h3>
+    <div class="spacer"></div>
 
     <div class="row">
-        <div class="col-3">
+        <div class="col-lg-2">
             <form th:action="@{filter}" th:object="${formResult}">
                 <!--<input type="hidden" name="page" th:value="${currentPage}"/>-->
                 <input type="hidden" name="size" th:value="${size}"/>
@@ -40,8 +47,13 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
+
+            <div class="spacer"></div>
+
         </div>
-        <div class="col">
+        <div class="col-lg-1">
+        </div>
+        <div class="col-lg">
             <div>
                 <table class="table">
                     <thead>

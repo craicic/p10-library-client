@@ -2,10 +2,15 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head th:include="fragments/head :: header">
-    <title id="pageTitle">A book from the collection</title>
+    <title id="pageTitle">Book detail</title>
 </head>
 
 <body>
+
+<header>
+    <div th:include="fragments/header :: navbar"></div>
+</header>
+
 <h3>Book</h3>
 <table class="table">
     <thead>

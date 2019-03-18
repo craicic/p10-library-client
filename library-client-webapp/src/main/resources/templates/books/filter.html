@@ -4,13 +4,21 @@
     <title id="pageTitle">Advanced search</title>
 </head>
 <body>
+
+<header>
+    <div th:include="fragments/header :: navbar"></div>
+</header>
+
 <div class="container-fluid">
+    <div class="spacer"></div>
     <h3>Search books</h3>
+    <div class="spacer"></div>
 
     <div class="row">
-        <div class="col-3">
+        <div class="col-lg-3">
+            <div>Filter</div>
         </div>
-        <div class="col">
+        <div class="col-lg">
             <div>
                 <table class="table">
                     <thead>

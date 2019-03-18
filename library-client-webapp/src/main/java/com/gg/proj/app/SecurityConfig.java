@@ -30,7 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers( "/index").permitAll()
+//                .antMatchers( "/index").permitAll()
                 .antMatchers( "/login").permitAll()
                 .anyRequest().authenticated()
                 .and()
@@ -43,8 +43,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                        authenticationFailureHandler())
                 .and()
                 .logout()
-//                .logoutUrl("/perform_logout")
-//                .deleteCookies("JSESSIONID")
+                .logoutUrl("/perform_logout")
+                .deleteCookies("JSESSIONID")
 //                .logoutSuccessHandler(logoutSuccessHandler())
         ;
     }
