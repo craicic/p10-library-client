@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="fragments/head :: header">
+    <title id="pageTitle">My loans</title>
+</head>
+
+<body>
+
+<header>
+    <div th:include="fragments/header :: navbar"></div>
+</header>
+
+<div class="container-fluid">
+    <div class="spacer"></div>
+    <h3>Search books</h3>
+    <div class="spacer"></div>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>AUTHOR</th>
+            <th>TITLE</th>
+            <th>START DATE</th>
+            <th>END DATE</th>
+            <th>STATUS</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="l:${loans}">
+            <td th:text="${l.getLoanModel().id}"></td>
+            <td th:text="${l.getBookMinModel().author}"></td>
+            <td th:text="${l.getBookMinModel().title}"></td>
+            <td th:text="${l.getLoanModel().loanStartDate}"></td>
+            <td th:text="${l.getLoanModel().loanEndDate}"></td>
+            <td>
+                <div th:if="${l.loanModel.loanEndDate.isBefore(currentDate)}" class="badge badge-danger">Late</div>
+                <div th:if="${!l.loanModel.closed}" class="badge badge-info">Active</div>
+                <div th:if="${l.loanModel.extended}" class="badge badge-primary">Extended</div>
+
+            </td>
+            <td>
+                <a th:if="${!l.loanModel.extended}" class="btn btn-primary" th:href="@{/loan/extend(loanId=${l.loanModel.id})}">Extend
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

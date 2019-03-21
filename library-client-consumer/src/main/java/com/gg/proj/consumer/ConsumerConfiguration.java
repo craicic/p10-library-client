@@ -1,6 +1,7 @@
 package com.gg.proj.consumer;
 
 import com.gg.proj.consumer.connectors.BookConnector;
+import com.gg.proj.consumer.connectors.LoanConnector;
 import com.gg.proj.consumer.connectors.ProfileConnector;
 import com.gg.proj.consumer.connectors.UserConnector;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +63,24 @@ public class ConsumerConfiguration {
         client.setDefaultUri("http://localhost:8080/ws");
         client.setMarshaller(profileMarshaller);
         client.setUnmarshaller(profileMarshaller);
+        return client;
+    }
+
+    @Bean
+    public Jaxb2Marshaller loanMarshaller() {
+        Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
+        // this package must match the package in the <generatePackage> specified in
+        // pom.xml
+        marshaller.setContextPath("com.gg.proj.consumer.wsdl.loans");
+        return marshaller;
+    }
+
+    @Bean
+    public LoanConnector loanConnector(@Autowired Jaxb2Marshaller loanMarshaller) {
+        LoanConnector client = new LoanConnector();
+        client.setDefaultUri("http://localhost:8080/ws");
+        client.setMarshaller(loanMarshaller);
+        client.setUnmarshaller(loanMarshaller);
         return client;
     }
 }

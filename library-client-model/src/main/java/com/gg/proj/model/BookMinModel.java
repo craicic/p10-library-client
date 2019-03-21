@@ -3,7 +3,7 @@ package com.gg.proj.model;
 import java.util.List;
 import java.util.Objects;
 
-public class BookModel {
+public class BookMinModel {
 
     private Integer id;
     private String author;
@@ -11,24 +11,19 @@ public class BookModel {
     private String isbn;
     private Integer quantity;
     private String summary;
-    private List<Integer> topicIds;
     private Integer libraryId;
-    private Integer languageId;
 
+    public BookMinModel() {
+    }
 
-    public BookModel(){}
-
-    public BookModel(Integer id, String author, String title, String isbn, Integer quantity, String summary,
-                     List<Integer> topicIds, Integer libraryId, Integer languageId) {
+    public BookMinModel(Integer id, String author, String title, String isbn, Integer quantity, String summary, Integer libraryId) {
         this.id = id;
         this.author = author;
         this.title = title;
         this.isbn = isbn;
         this.quantity = quantity;
         this.summary = summary;
-        this.topicIds = topicIds;
         this.libraryId = libraryId;
-        this.languageId = languageId;
     }
 
     public Integer getId() {
@@ -79,14 +74,6 @@ public class BookModel {
         this.summary = summary;
     }
 
-    public List<Integer> getTopicIds() {
-        return topicIds;
-    }
-
-    public void setTopicIds(List<Integer> topicIds) {
-        this.topicIds = topicIds;
-    }
-
     public Integer getLibraryId() {
         return libraryId;
     }
@@ -95,26 +82,16 @@ public class BookModel {
         this.libraryId = libraryId;
     }
 
-    public Integer getLanguageId() {
-        return languageId;
-    }
-
-    public void setLanguageId(Integer languageId) {
-        this.languageId = languageId;
-    }
-
     @Override
     public String toString() {
-        return "BookModel{" +
+        return "BookMinModel{" +
                 "id=" + id +
                 ", author='" + author + '\'' +
                 ", title='" + title + '\'' +
                 ", isbn='" + isbn + '\'' +
                 ", quantity=" + quantity +
                 ", summary='" + summary + '\'' +
-                ", topicIds=" + topicIds +
                 ", libraryId=" + libraryId +
-                ", languageId=" + languageId +
                 '}';
     }
 
@@ -122,20 +99,18 @@ public class BookModel {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        BookModel bookModel = (BookModel) o;
-        return id.equals(bookModel.id) &&
-                author.equals(bookModel.author) &&
-                title.equals(bookModel.title) &&
-                Objects.equals(isbn, bookModel.isbn) &&
-                quantity.equals(bookModel.quantity) &&
-                Objects.equals(summary, bookModel.summary) &&
-                Objects.equals(topicIds, bookModel.topicIds) &&
-                libraryId.equals(bookModel.libraryId) &&
-                languageId.equals(bookModel.languageId);
+        BookMinModel that = (BookMinModel) o;
+        return id.equals(that.id) &&
+                author.equals(that.author) &&
+                title.equals(that.title) &&
+                Objects.equals(isbn, that.isbn) &&
+                quantity.equals(that.quantity) &&
+                Objects.equals(summary, that.summary) &&
+                libraryId.equals(that.libraryId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, author, title, isbn, quantity, summary, topicIds, libraryId, languageId);
+        return Objects.hash(id, author, title, isbn, quantity, summary, libraryId);
     }
 }

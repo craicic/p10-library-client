@@ -1,6 +1,7 @@
 package com.gg.proj.model;
 
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.UUID;
 
 public class TokenModel {
@@ -60,5 +61,21 @@ public class TokenModel {
                 ", expirationDate=" + expirationDate +
                 ", userId=" + userId +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TokenModel that = (TokenModel) o;
+        return id.equals(that.id) &&
+                tokenUUID.equals(that.tokenUUID) &&
+                expirationDate.equals(that.expirationDate) &&
+                userId.equals(that.userId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, tokenUUID, expirationDate, userId);
     }
 }

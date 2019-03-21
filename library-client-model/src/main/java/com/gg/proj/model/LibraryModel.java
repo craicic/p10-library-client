@@ -1,5 +1,7 @@
 package com.gg.proj.model;
 
+import java.util.Objects;
+
 public class LibraryModel {
 
     private Integer id;
@@ -72,5 +74,35 @@ public class LibraryModel {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "LibraryModel{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", city='" + city + '\'' +
+                ", postalCode=" + postalCode +
+                ", address='" + address + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LibraryModel that = (LibraryModel) o;
+        return id.equals(that.id) &&
+                name.equals(that.name) &&
+                city.equals(that.city) &&
+                postalCode.equals(that.postalCode) &&
+                address.equals(that.address) &&
+                phoneNumber.equals(that.phoneNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, city, postalCode, address, phoneNumber);
     }
 }

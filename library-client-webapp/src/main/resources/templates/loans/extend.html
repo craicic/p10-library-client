@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="fragments/head :: header">
+    <!--<link rel="calendar" type="text/css"-->
+    <!--href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css"/>-->
+    <title id="pageTitle">My loans</title>
+
+</head>
+
+<body>
+
+<header>
+    <div th:include="fragments/header :: navbar"></div>
+</header>
+
+<div class="container-fluid">
+    <div class="spacer"></div>
+    <h3>Extend my loan</h3>
+    <p class="lead">Here you can extend your loan : simply click 'extend' or pick a date in the calendar</p>
+    <div class="spacer"></div>
+
+    <div class="bootstrap-iso">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+
+                    <!-- Form code begins -->
+                    <form method="post" th:action="@{/loan/perform_extension(loanId=${loanId})}">
+                        <div class="form-group"> <!-- Date input -->
+                            <label class="control-label" for="date">Date</label>
+                            <input class="form-control" id="date" name="date" placeholder="DD/MM/YYYY" type="text"/>
+
+                        </div>
+
+                        <div class="form-group"> <!-- Submit button -->
+                            <button class="btn btn-primary " name="submit" type="submit">Submit</button>
+                        </div>
+                    </form>
+                    <!-- Form code ends -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript"
+        src="https://code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+        crossorigin="anonymous"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker3.css"/>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var date_input = $('input[name="date"]'); //our date input has the name "date"
+        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+        var options = {
+            format: 'dd/mm/yyyy',
+            startDate: '21/03/2019',
+            weekStart: '1',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+            language: 'fr',
+        };
+        date_input.datepicker(options);
+    })
+</script>
+
+</body>
+</html>
