@@ -1,9 +1,9 @@
 package com.gg.proj.consumer;
 
-import com.gg.proj.consumer.connectors.BookConnector;
 import com.gg.proj.consumer.connectors.LoanConnector;
 import com.gg.proj.consumer.wsdl.loans.FindAllLoansByUserIdResponse;
-import com.gg.proj.model.complex.LoanResultModel;
+import com.gg.proj.consumer.wsdl.loans.GetLoanResponse;
+import com.gg.proj.consumer.wsdl.loans.Loan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,4 +25,11 @@ public class LoanConsumer {
         return loanConnector.findAllLoansByUserId(userId, tokenUUID);
     }
 
+    public Loan findById(int loanId, String tokenUUID) {
+        return loanConnector.findById(loanId, tokenUUID).getLoan();
+    }
+
+    public void extend(Loan loan, String tokenUUID) {
+        loanConnector.extend(loan, tokenUUID);
+    }
 }

@@ -1,5 +1,6 @@
 package com.gg.proj.business.mapper;
 
+import com.gg.proj.consumer.wsdl.loans.Loan;
 import com.gg.proj.consumer.wsdl.loans.LoanDetailed;
 import com.gg.proj.model.LoanModel;
 import org.mapstruct.Mapper;
@@ -13,5 +14,9 @@ public interface LoanMapper {
             @Mapping(source = "book.id", target = "bookId"),
             @Mapping(source = "userId", target = "userId")
     })
-    LoanModel loanToLoanModel(LoanDetailed ld);
+    LoanModel loanDetailedToLoanModel(LoanDetailed ld);
+
+    LoanModel loanToLoanModel(Loan loan);
+
+    Loan loanModelToLoan(LoanModel loanModel);
 }

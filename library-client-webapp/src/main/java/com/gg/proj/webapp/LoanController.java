@@ -46,11 +46,11 @@ public class LoanController {
 
     @RequestMapping(value = "/loan/perform_extension")
     public RedirectView performExtension(RedirectAttributes attributes,
-                                         @RequestParam(required = false) LocalDate date,
+                                         @RequestParam(required = false) String date,
                                          @RequestParam int loanId) {
         UserInfo userInfo = (UserInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         attributes.addFlashAttribute("flashAttribute", "loan/perform_extension");
-        loanManager.extendMyLoan(loanId, userInfo.getId(), userInfo.getTokenUUID());
+        loanManager.extendMyLoan(loanId, date, userInfo.getId(), userInfo.getTokenUUID());
         return new RedirectView("/loan/my_loans");
     }
 }
