@@ -13,10 +13,10 @@
 
 <div class="container-fluid">
     <div class="spacer"></div>
-    <h3>Search books</h3>
+    <h3>My Loans</h3>
     <div class="spacer"></div>
-
-    <table class="table">
+    <div class="lead" th:if="${loans.isEmpty()}">You have not active loan at the moment</div>
+    <table class="table" th:unless="${loans.isEmpty()}">
         <thead>
         <tr>
             <th>ID</th>
