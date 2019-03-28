@@ -1,6 +1,5 @@
 package com.gg.proj.consumer.connectors;
 
-import com.gg.proj.consumer.UserConsumer;
 import com.gg.proj.consumer.wsdl.users.LoginUserRequest;
 import com.gg.proj.consumer.wsdl.users.LoginUserResponse;
 import com.gg.proj.consumer.wsdl.users.Token;
@@ -23,11 +22,16 @@ public class UserConnector extends WebServiceGatewaySupport {
         request.setPassword(password);
 
 
-        LoginUserResponse response = (LoginUserResponse) getWebServiceTemplate().
-                marshalSendAndReceive(SERVICE_LOCATION, request,
-                        new SoapActionCallback("http://proj.gg.com/service/library-client"));
+        try {
+            LoginUserResponse response = (LoginUserResponse) getWebServiceTemplate().
+                    marshalSendAndReceive(SERVICE_LOCATION, request,
+                            new SoapActionCallback("http://proj.gg.com/service/library-client"));
 
-        return response.getToken();
+            return response.getToken();
+        } catch (Exception e) {
+            log.debug("An exception has been catch : " + e.getMessage());
+            return null;
+        }
     }
 
 }

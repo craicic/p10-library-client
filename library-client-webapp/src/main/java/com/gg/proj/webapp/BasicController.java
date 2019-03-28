@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class BasicController {
 
-    @RequestMapping(value = "/index")
+    @RequestMapping(value = {"/index", "/home", "/"})
     public String index() {
         return "index";
     }
@@ -28,4 +28,5 @@ public class BasicController {
     public String logout() {
         return "index";
     }
+
 }

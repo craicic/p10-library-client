@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      th:with="lang=${#locale.language}" th:lang="${lang}">
 
 <head th:include="fragments/head :: header">
     <title id="pageTitle">A book from the collection</title>
@@ -14,6 +15,8 @@
 <div class="container-fluid">
     <div class="spacer"></div>
     <h3>You are at index</h3>
+    <div class="spacer"></div>
+    <div class="lead" th:text="#{welcome.message}">Welcome</div>
 </div>
 </body>
 </html>
