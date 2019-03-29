@@ -11,7 +11,7 @@
 
 <div class="container-fluid">
     <div class="spacer"></div>
-    <h3>Search books</h3>
+    <h3 th:text="#{book.search.info}">Search books</h3>
     <div class="spacer"></div>
 
     <div class="row">
@@ -20,18 +20,16 @@
         </div>
         <div class="col-lg">
             <div>
-                <div class="lead" th:if="${books.isEmpty()}">No result match your search</div>
+                <div class="lead" th:if="${books.isEmpty()}" th:text="#{book.search.none}">No result match your search</div>
                 <table class="table" th:unless="${books.isEmpty()}">
                     <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>AUTHOR</th>
-                        <th>TITLE</th>
+                        <th th:text="#{book.author}">AUTHOR</th>
+                        <th th:text="#{book.title}">TITLE</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr th:each="b:${books}">
-                        <td th:text="${b.id}"></td>
                         <td th:text="${b.author}"></td>
                         <td><a th:href="@{get(id=${b.id})}" th:text="${b.title}"></a></td>
                     </tr>

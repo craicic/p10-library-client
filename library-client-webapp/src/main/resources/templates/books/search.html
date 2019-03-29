@@ -1,92 +1,115 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:include="fragments/head :: header">
-    <title id="pageTitle">Basic search</title>
+    <title id="pageTitle">Simple search</title>
 </head>
 <body>
 
 <header>
     <div th:include="fragments/header :: navbar"></div>
 </header>
+<main>
+    <div class="container-fluid">
+        <div class="spacer"></div>
+        <h3 th:text="#{book.search.info}">Search books</h3>
+        <div class="spacer"></div>
 
-<div class="container-fluid">
-    <div class="spacer"></div>
-    <h3>Search books</h3>
-    <div class="spacer"></div>
+        <div class="row">
+            <div class="col-lg-2">
+                <form th:action="@{filter}" th:object="${formResult}">
+                    <!--<input type="hidden" name="page" th:value="${currentPage}"/>-->
+                    <input type="hidden" name="size" th:value="${size}"/>
+                    <input type="hidden" name="keyWord" th:value="${keyWord}"/>
+                    <div class="form-group">
+                        <select class="form-control" th:field="*{languageId}" id="Language">
+                            <option value="-1" th:text="#{book.search.select.language}">Select a language</option>
+                            <option th:each="language : ${languages}" th:value="${language.id}"
+                                    th:text="${language.name}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control" th:field="*{libraryId}" id="Library">
+                            <option value="-1" th:text="#{book.search.select.library}">Select a library</option>
+                            <option th:each="library : ${libraries}" th:value="${library.id}"
+                                    th:text="${library.name}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control" th:field="*{topicId}" id="Topic">
+                            <option value="-1" th:text="#{book.search.select.topic}">Select a topic</option>
+                            <option th:each="topic : ${topics}" th:value="${topic.id}" th:text="${topic.name}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label title="Available" th:text="#{book.search.select.available}">Available
+                            <input type="checkbox" th:field="*{available}" id="Available"/>
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary" th:text="#{book.search.submit}">Submit</button>
+                </form>
 
-    <div class="row">
-        <div class="col-lg-2">
-            <form th:action="@{filter}" th:object="${formResult}">
-                <!--<input type="hidden" name="page" th:value="${currentPage}"/>-->
-                <input type="hidden" name="size" th:value="${size}"/>
-                <input type="hidden" name="keyWord" th:value="${keyWord}"/>
-                <div class="form-group">
-                    <select class="form-control" th:field="*{languageId}" id="Language">
-                        <option value="-1">Select a language</option>
-                        <option th:each="language : ${languages}" th:value="${language.id}"
-                                th:text="${language.name}"></option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <select class="form-control" th:field="*{libraryId}" id="Library">
-                        <option value="-1">Select a library</option>
-                        <option th:each="library : ${libraries}" th:value="${library.id}"
-                                th:text="${library.name}"></option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <select class="form-control" th:field="*{topicId}" id="Topic">
-                        <option value="-1">Select a topic</option>
-                        <option th:each="topic : ${topics}" th:value="${topic.id}" th:text="${topic.name}"></option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label title="Available">Available
-                        <input type="checkbox" th:field="*{available}" id="Available"/>
-                    </label>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+                <div class="spacer"></div>
 
-            <div class="spacer"></div>
-
-        </div>
-        <div class="col-lg-1">
-        </div>
-        <div class="col-lg">
-            <div>
-                <div class="lead" th:if="${books.isEmpty()}">No result match your search</div>
-                <table class="table" th:unless="${books.isEmpty()}">
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>AUTHOR</th>
-                        <th>TITLE</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="b:${books}">
-                        <td th:text="${b.id}"></td>
-                        <td th:text="${b.author}"></td>
-                        <td><a th:href="@{get(id=${b.id})}" th:text="${b.title}"></a></td>
-                    </tr>
-                    </tbody>
-                </table>
             </div>
-            <div>
-                <ul class="nav nav-pills">
-                    <li class="nav-item" th:each="p,status:${pages}">
-                        <a th:class="(${currentPage}==${status.index})?'nav-link active':'nav-link'"
-                           th:href="@{search(page=${status.index},size=${size}, keyWord=${keyWord})}"
-                           th:text="${status.count}"></a>
-                    </li>
-                </ul>
+            <div class="col-lg-1">
+            </div>
+            <div class="col-lg">
+                <div>
+                    <div class="lead" th:if="${books.isEmpty()}" th:text="#{book.search.none}">No result match your
+                        search
+                    </div>
+                    <table class="table" th:unless="${books.isEmpty()}">
+                        <thead>
+                        <tr>
+                            <th th:text="#{book.author}">AUTHOR</th>
+                            <th th:text="#{book.title}">TITLE</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="b:${books}">
+                            <td th:text="${b.author}"></td>
+                            <td><a th:href="@{get(id=${b.id})}" th:text="${b.title}"></a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <ul class="nav nav-pills">
+                        <li class="nav-item" th:each="p,status:${pages}">
+                            <a th:class="(${currentPage}==${status.index})?'nav-link active':'nav-link'"
+                               th:href="@{search(page=${status.index},size=${size}, keyWord=${keyWord})}"
+                               th:text="${status.count}"></a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
+</main>
+<footer class="footer mt-auto py-3">
+    <div>
+        <select id="locales">
+            <option value=""></option>
+            <option value="US" th:text="US"></option>
+            <option value="FR" th:text="FR"></option>
+        </select>
+    </div>
 
-
-</div>
+</footer>
 </body>
 
+<script type="text/javascript"
+        src="https://code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+        crossorigin="anonymous"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#locales").change(function () {
+            var selectedOption = $('#locales').val();
+            if (selectedOption != '') {
+                window.location.replace('?lang=' + selectedOption);
+            }
+        });
+    });
+</script>
 </html>

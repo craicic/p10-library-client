@@ -11,18 +11,18 @@
     <div th:include="fragments/header :: navbar"></div>
 </header>
 
-<h3>Book</h3>
+<div class="spacer"></div>
+<h3 th:text="#{book.detail.info}">Book</h3>
+<div class="spacer"></div>
 <table class="table">
     <thead>
     <tr>
-        <th>ID</th>
-        <th>AUTHOR</th>
-        <th>TITLE</th>
+        <th th:text="#{book.author}">AUTHOR</th>
+        <th th:text="#{book.title}">TITLE</th>
     </tr>
     </thead>
     <tbody>
     <tr>
-        <td th:text="${book.id}"></td>
         <td th:text="${book.author}"></td>
         <td th:text="${book.title}"></td>
     </tr>

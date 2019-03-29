@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head th:include="fragments/head :: header">
-    <title id="pageTitle">My loans</title>
+    <title id="pageTitle">Consult loans</title>
 </head>
 
 <body>
@@ -15,26 +15,25 @@
     <div class="spacer"></div>
     <h3>My Loans</h3>
     <div class="spacer"></div>
-    <div class="lead" th:if="${loans.isEmpty()}">You have not active loan at the moment</div>
+    <!-- if no loan is active you don't display the table -->
+    <div class="lead" th:if="${loans.isEmpty()}" th:text="#{loan.none}">You have not active loan at the moment</div>
     <table class="table" th:unless="${loans.isEmpty()}">
         <thead>
         <tr>
-            <th>ID</th>
-            <th>AUTHOR</th>
-            <th>TITLE</th>
-            <th>START DATE</th>
-            <th>END DATE</th>
-            <th>STATUS</th>
+            <th th:text="#{book.author}">AUTHOR</th>
+            <th th:text="#{book.title}">TITLE</th>
+            <th th:text="#{loan.start}">START DATE</th>
+            <th th:text="#{loan.end}">END DATE</th>
+            <th th:text="#{loan.status}">STATUS</th>
             <th></th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="l:${loans}">
-            <td th:text="${l.getLoanModel().id}"></td>
-            <td th:text="${l.getBookMinModel().author}"></td>
-            <td th:text="${l.getBookMinModel().title}"></td>
-            <td th:text="${l.getLoanModel().loanStartDate}"></td>
-            <td th:text="${l.getLoanModel().loanEndDate}"></td>
+            <td th:text="${l.bookMinModel.author}"></td>
+            <td th:text="${l.bookMinModel.title}"></td>
+            <td th:text="${l.loanModel.loanStartDate}"></td>
+            <td th:text="${l.loanModel.loanEndDate}"></td>
             <td>
                 <div th:if="${l.loanModel.loanEndDate.isBefore(currentDate)}" class="badge badge-danger">Late</div>
                 <div th:if="${!l.loanModel.closed}" class="badge badge-info">Active</div>
@@ -42,7 +41,8 @@
 
             </td>
             <td>
-                <a th:if="${!l.loanModel.extended}" class="btn btn-primary" th:href="@{/loan/extend(loanId=${l.loanModel.id})}">Extend
+                <a th:if="${!l.loanModel.extended}" class="btn btn-primary"
+                   th:href="@{/loan/extend(loanId=${l.loanModel.id})}">Extend
                 </a>
             </td>
         </tr>
