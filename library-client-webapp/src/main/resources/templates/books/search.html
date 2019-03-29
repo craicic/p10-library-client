@@ -6,7 +6,7 @@
 <body>
 
 <header>
-    <div th:include="fragments/header :: navbar"></div>
+    <div th:include="fragments/header :: navbarbootstrap"></div>
 </header>
 <main>
     <div class="container-fluid">
@@ -86,30 +86,11 @@
         </div>
     </div>
 </main>
-<footer class="footer mt-auto py-3">
-    <div>
-        <select id="locales">
-            <option value=""></option>
-            <option value="US" th:text="US"></option>
-            <option value="FR" th:text="FR"></option>
-        </select>
-    </div>
-
-</footer>
 </body>
 
 <script type="text/javascript"
         src="https://code.jquery.com/jquery-1.12.4.min.js"
         integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
         crossorigin="anonymous"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#locales").change(function () {
-            var selectedOption = $('#locales').val();
-            if (selectedOption != '') {
-                window.location.replace('?lang=' + selectedOption);
-            }
-        });
-    });
-</script>
+
 </html>
