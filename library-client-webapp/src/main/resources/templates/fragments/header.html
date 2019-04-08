@@ -5,6 +5,7 @@
     <title>Navigation bar fragment</title>
 </head>
 <body>
+<!-- THE MAIN NAVIGATION BAR -->
 <div th:fragment="navbarbootstrap">
     <nav class="navbar navbar-expand-md navbar-dark bg-primary">
         <a class="navbar-brand" th:href="@{/}" th:text="#{nav.brand}">Library</a>
@@ -26,7 +27,7 @@
                     <a class="nav-link" th:href="@{/login}" th:text="#{nav.login}">Login<span
                             class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item active">
+                <li class="form-inline my-2 my-lg-0">
                     <div>
                         <select class="form-control" id="locales">
                             <option value=""></option>
@@ -57,19 +58,11 @@
             crossorigin="anonymous"></script>
     <!-- LANGUAGE SELECT BUTTON -->
     <script type="text/javascript">
-        // $(document).ready(function () {
-        //     $("#locales").change(function () {
-        //         var selectedOption = $('#locales').val();
-        //         if (selectedOption != '') {
-        //             window.location.replace(+ '?lang=' + selectedOption);
-        //         }
-        //     });
-        // });
         $(document).ready(function () {
             $("#locales").change(function () {
-                var selectedOption = $('#locales').val();
-                var url;
-                if (selectedOption != '') {
+                let selectedOption = $('#locales').val();
+                let url;
+                if (selectedOption !== '') {
                     if (document.location.href.indexOf('?') >= 0) {
                         if (document.location.href.search("lang=") >= 0) {
                             url = document.location.origin + "/?lang=" + selectedOption;
@@ -79,7 +72,6 @@
                     } else {
                         url = document.location.href + "?lang=" + selectedOption;
                     }
-                    // document.location = url;
                     window.location.replace(url);
                 }
             });
