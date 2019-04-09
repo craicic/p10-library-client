@@ -1,8 +1,11 @@
 package com.gg.proj.consumer.connectors;
 
+import com.gg.proj.consumer.ConsumerProperties;
 import com.gg.proj.consumer.wsdl.books.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ws.WebServiceMessageFactory;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
 
@@ -10,7 +13,20 @@ public class BookConnector extends WebServiceGatewaySupport {
 
     private static final Logger log = LoggerFactory.getLogger(BookConnector.class);
 
-    private static final String SERVICE_LOCATION = "http://localhost:8080/ws/books";
+    private ConsumerProperties consumerProperties;
+
+    private String serviceLocation;
+
+    public BookConnector(@Autowired ConsumerProperties consumerProperties) {
+        this.consumerProperties = consumerProperties;
+        this.serviceLocation = this.consumerProperties.getUri() + "/books";
+    }
+
+    public BookConnector(WebServiceMessageFactory messageFactory, @Autowired ConsumerProperties consumerProperties) {
+        super(messageFactory);
+        this.consumerProperties = consumerProperties;
+        this.serviceLocation = this.consumerProperties.getUri() + "/books";
+    }
 
     public GetBookResponse getBook(Integer id) {
         GetBookRequest request = new GetBookRequest();
@@ -18,7 +34,7 @@ public class BookConnector extends WebServiceGatewaySupport {
         request.setId(id);
 
         GetBookResponse response = (GetBookResponse) getWebServiceTemplate()
-                .marshalSendAndReceive(SERVICE_LOCATION, request,
+                .marshalSendAndReceive(serviceLocation, request,
                         new SoapActionCallback("http://proj.gg.com/service/library-client"));
 
         return response;
@@ -28,7 +44,7 @@ public class BookConnector extends WebServiceGatewaySupport {
         ListAllBooksRequest request = new ListAllBooksRequest();
         log.info("Listing all books exposed by web service");
 
-        ListAllBooksResponse response = (ListAllBooksResponse) getWebServiceTemplate().marshalSendAndReceive(SERVICE_LOCATION, request,
+        ListAllBooksResponse response = (ListAllBooksResponse) getWebServiceTemplate().marshalSendAndReceive(serviceLocation, request,
                 new SoapActionCallback("http://proj.gg.com/service/library-client"));
 
         return response;
@@ -41,7 +57,7 @@ public class BookConnector extends WebServiceGatewaySupport {
         request.setSize(size);
         request.setKeyWord(keyWord);
 
-        return (SearchBooksResponse) getWebServiceTemplate().marshalSendAndReceive(SERVICE_LOCATION, request,
+        return (SearchBooksResponse) getWebServiceTemplate().marshalSendAndReceive(serviceLocation, request,
                 new SoapActionCallback("http://proj.gg.com/service/library-client"));
     }
 
@@ -56,7 +72,7 @@ public class BookConnector extends WebServiceGatewaySupport {
         request.setLibraryId(libraryId);
         request.setTopicId(topicId);
         request.setAvailable(available);
-        return (FilterBooksResponse) getWebServiceTemplate().marshalSendAndReceive(SERVICE_LOCATION, request,
+        return (FilterBooksResponse) getWebServiceTemplate().marshalSendAndReceive(serviceLocation, request,
                 new SoapActionCallback("http://proj.gg.com/service/library-client"));
     }
 }

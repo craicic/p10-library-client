@@ -5,12 +5,25 @@ import com.gg.proj.consumer.connectors.LoanConnector;
 import com.gg.proj.consumer.connectors.ProfileConnector;
 import com.gg.proj.consumer.connectors.UserConnector;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfigureOrder;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
+
 @Configuration
+@EnableConfigurationProperties
+@ComponentScan("com.gg.proj.consumer")
 public class ConsumerConfiguration {
+
+    private ConsumerProperties consumerProperties;
+
+    @Autowired
+    public ConsumerConfiguration(ConsumerProperties consumerProperties) {
+        this.consumerProperties = consumerProperties;
+    }
 
     @Bean
     public Jaxb2Marshaller bookMarshaller() {
@@ -23,8 +36,8 @@ public class ConsumerConfiguration {
 
     @Bean
     public BookConnector bookConnector(@Autowired Jaxb2Marshaller bookMarshaller) {
-        BookConnector client = new BookConnector();
-        client.setDefaultUri("http://localhost:8080/ws");
+        BookConnector client = new BookConnector(consumerProperties);
+        client.setDefaultUri(consumerProperties.getUri());
         client.setMarshaller(bookMarshaller);
         client.setUnmarshaller(bookMarshaller);
         return client;
@@ -41,8 +54,8 @@ public class ConsumerConfiguration {
 
     @Bean
     public UserConnector userConnector(@Autowired Jaxb2Marshaller userMarshaller) {
-        UserConnector client = new UserConnector();
-        client.setDefaultUri("http://localhost:8080/ws");
+        UserConnector client = new UserConnector(consumerProperties);
+        client.setDefaultUri(consumerProperties.getUri());
         client.setMarshaller(userMarshaller);
         client.setUnmarshaller(userMarshaller);
         return client;
@@ -59,8 +72,8 @@ public class ConsumerConfiguration {
 
     @Bean
     public ProfileConnector profileConnector(@Autowired Jaxb2Marshaller profileMarshaller) {
-        ProfileConnector client = new ProfileConnector();
-        client.setDefaultUri("http://localhost:8080/ws");
+        ProfileConnector client = new ProfileConnector(consumerProperties);
+        client.setDefaultUri(consumerProperties.getUri());
         client.setMarshaller(profileMarshaller);
         client.setUnmarshaller(profileMarshaller);
         return client;
@@ -77,8 +90,8 @@ public class ConsumerConfiguration {
 
     @Bean
     public LoanConnector loanConnector(@Autowired Jaxb2Marshaller loanMarshaller) {
-        LoanConnector client = new LoanConnector();
-        client.setDefaultUri("http://localhost:8080/ws");
+        LoanConnector client = new LoanConnector(consumerProperties);
+        client.setDefaultUri(consumerProperties.getUri());
         client.setMarshaller(loanMarshaller);
         client.setUnmarshaller(loanMarshaller);
         return client;

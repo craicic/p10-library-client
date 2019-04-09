@@ -17,6 +17,7 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <wsdl.base.location>http://localhost:8080/ws</wsdl.base.location>
     </properties>
 
     <dependencies>
@@ -32,7 +33,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
-
+        <!-- Spring annotation processor -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
         <!--==== MODULES ====-->
         <dependency>
             <groupId>com.gg.proj.model</groupId>
@@ -65,7 +71,7 @@
                             <generatePackage>com.gg.proj.consumer.wsdl.books</generatePackage>
                             <schemas>
                                 <schema>
-                                    <url>http://localhost:8080/ws/books.wsdl</url>
+                                    <url>${wsdl.base.location}/books.wsdl</url>
                                 </schema>
                             </schemas>
                         </configuration>
@@ -80,7 +86,7 @@
                             <generatePackage>com.gg.proj.consumer.wsdl.users</generatePackage>
                             <schemas>
                                 <schema>
-                                    <url>http://localhost:8080/ws/users.wsdl</url>
+                                    <url>${wsdl.base.location}/users.wsdl</url>
                                 </schema>
                             </schemas>
                         </configuration>
@@ -95,7 +101,7 @@
                             <generatePackage>com.gg.proj.consumer.wsdl.loans</generatePackage>
                             <schemas>
                                 <schema>
-                                    <url>http://localhost:8080/ws/loans.wsdl</url>
+                                    <url>${wsdl.base.location}/loans.wsdl</url>
                                 </schema>
                             </schemas>
                         </configuration>
@@ -110,7 +116,7 @@
                             <generatePackage>com.gg.proj.consumer.wsdl.profiles</generatePackage>
                             <schemas>
                                 <schema>
-                                    <url>http://localhost:8080/ws/profiles.wsdl</url>
+                                    <url>${wsdl.base.location}/profiles.wsdl</url>
                                 </schema>
                             </schemas>
                         </configuration>

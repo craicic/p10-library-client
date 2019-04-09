@@ -1,8 +1,11 @@
 package com.gg.proj.consumer.connectors;
 
+import com.gg.proj.consumer.ConsumerProperties;
 import com.gg.proj.consumer.wsdl.loans.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ws.WebServiceMessageFactory;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
 
@@ -12,7 +15,20 @@ public class LoanConnector extends WebServiceGatewaySupport {
 
     private static final Logger log = LoggerFactory.getLogger(LoanConnector.class);
 
-    private static final String SERVICE_LOCATION = "http://localhost:8080/ws/loans";
+    private String serviceLocation;
+
+    private ConsumerProperties consumerProperties;
+
+    public LoanConnector(@Autowired ConsumerProperties consumerProperties) {
+        this.consumerProperties = consumerProperties;
+        this.serviceLocation = this.consumerProperties.getUri() + "/loans";
+    }
+
+    public LoanConnector(WebServiceMessageFactory messageFactory, @Autowired ConsumerProperties consumerProperties) {
+        super(messageFactory);
+        this.consumerProperties = consumerProperties;
+        this.serviceLocation = this.consumerProperties.getUri() + "/loans";
+    }
 
     public FindAllLoansByUserIdResponse findAllLoansByUserId(Integer userId, String tokenUUID) {
         FindAllLoansByUserIdRequest request = new FindAllLoansByUserIdRequest();
@@ -21,7 +37,7 @@ public class LoanConnector extends WebServiceGatewaySupport {
         request.setTokenUUID(tokenUUID);
 
         return (FindAllLoansByUserIdResponse) getWebServiceTemplate()
-                .marshalSendAndReceive(SERVICE_LOCATION, request,
+                .marshalSendAndReceive(serviceLocation, request,
                         new SoapActionCallback("http://proj.gg.com/service/library-client"));
     }
 
@@ -32,7 +48,7 @@ public class LoanConnector extends WebServiceGatewaySupport {
         request.setTokenUUID(tokenUUID);
 
         GetLoanResponse response = (GetLoanResponse) getWebServiceTemplate()
-                .marshalSendAndReceive(SERVICE_LOCATION, request,
+                .marshalSendAndReceive(serviceLocation, request,
                         new SoapActionCallback("http://proj.gg.com/service/library-client"));
         return response;
     }
@@ -43,7 +59,7 @@ public class LoanConnector extends WebServiceGatewaySupport {
         request.setTokenUUID(tokenUUID);
 
         ExtendLoanResponse response = (ExtendLoanResponse) getWebServiceTemplate()
-                .marshalSendAndReceive(SERVICE_LOCATION, request,
+                .marshalSendAndReceive(serviceLocation, request,
                         new SoapActionCallback("http://proj.gg.com/service/library-client"));
 
     }
