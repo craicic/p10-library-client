@@ -32,30 +32,24 @@
             <artifactId>thymeleaf-extras-springsecurity5</artifactId>
             <version>3.0.4.RELEASE</version>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <!-- This cause a compilation error when it comes to ServletInitializer -->
-            <!--<exclusions>-->
-                <!--<exclusion>-->
-                    <!--<groupId>org.springframework.boot</groupId>-->
-                    <!--<artifactId>spring-boot-starter-tomcat</artifactId>-->
-                <!--</exclusion>-->
-            <!--</exclusions>-->
         </dependency>
-
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
         <!-- Dev -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

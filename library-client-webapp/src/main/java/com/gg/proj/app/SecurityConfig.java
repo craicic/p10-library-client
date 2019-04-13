@@ -12,7 +12,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 @EnableWebSecurity
 //@EnableGlobalMethodSecurity(prePostEnabled = true)
-@ComponentScan("com.gg.proj.authentication")
+
+//this caused a bug when deploy on external tomcat
+//@ComponentScan("com.gg.proj.authentication")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
