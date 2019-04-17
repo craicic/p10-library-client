@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.gg.proj.business</OriginalElement>
+  <nodes>
+    <node x="735.0" y="117.0">com.gg.proj.business.BookManager</node>
+    <node x="1232.0" y="161.5">com.gg.proj.business.ProfileManager</node>
+    <node x="336.0" y="150.5">com.gg.proj.business.LoanManager</node>
+    <node x="656.1388888888889" y="0.0">com.gg.proj.business.mapper</node>
+    <node x="20.0" y="161.5">com.gg.proj.business.UserManager</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.gg.proj.business.ProfileManager" target="com.gg.proj.business.mapper">
+      <point x="77.25" y="-36.0" />
+      <point x="1463.75" y="67.0" />
+      <point x="777.0277777777778" y="67.0" />
+      <point x="56.888888888888914" y="13.5" />
+    </edge>
+    <edge source="com.gg.proj.business.BookManager" target="com.gg.proj.business.mapper">
+      <point x="-114.25" y="-80.5" />
+      <point x="849.25" y="97.0" />
+      <point x="734.3611111111111" y="97.0" />
+      <point x="14.222222222222172" y="13.5" />
+    </edge>
+    <edge source="com.gg.proj.business.LoanManager" target="com.gg.proj.business.mapper">
+      <point x="89.75" y="-47.0" />
+      <point x="605.25" y="97.0" />
+      <point x="720.1388888888889" y="97.0" />
+      <point x="0.0" y="13.5" />
+    </edge>
+    <edge source="com.gg.proj.business.LoanManager" target="com.gg.proj.business.LoanManager">
+      <point x="0.0" y="47.0" />
+      <point x="515.5" y="264.5" />
+      <point x="316.0" y="264.5" />
+      <point x="316.0" y="197.5" />
+      <point x="-179.5" y="-0.0" />
+    </edge>
+    <edge source="com.gg.proj.business.UserManager" target="com.gg.proj.business.UserManager">
+      <point x="0.0" y="36.0" />
+      <point x="158.0" y="253.5" />
+      <point x="0.0" y="253.5" />
+      <point x="0.0" y="197.5" />
+      <point x="-138.0" y="-0.0" />
+    </edge>
+    <edge source="com.gg.proj.business.mapper" target="com.gg.proj.business.mapper">
+      <point x="-56.888888888888886" y="13.5" />
+      <point x="663.25" y="47.0" />
+      <point x="636.1388888888889" y="47.0" />
+      <point x="636.1388888888889" y="13.5" />
+      <point x="-64.0" y="-0.0" />
+    </edge>
+    <edge source="com.gg.proj.business.BookManager" target="com.gg.proj.business.BookManager">
+      <point x="0.0" y="80.5" />
+      <point x="963.5" y="298.0" />
+      <point x="715.0" y="298.0" />
+      <point x="715.0" y="197.5" />
+      <point x="-228.5" y="-0.0" />
+    </edge>
+    <edge source="com.gg.proj.business.UserManager" target="com.gg.proj.business.mapper">
+      <point x="-69.0" y="-36.0" />
+      <point x="89.0" y="67.0" />
+      <point x="677.4722222222223" y="67.0" />
+      <point x="-42.66666666666663" y="13.5" />
+    </edge>
+    <edge source="com.gg.proj.business.ProfileManager" target="com.gg.proj.business.ProfileManager">
+      <point x="0.0" y="36.0" />
+      <point x="1386.5" y="253.5" />
+      <point x="1212.0" y="253.5" />
+      <point x="1212.0" y="197.5" />
+      <point x="-154.5" y="-0.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="711.0" y="417.5" />
+  <SelectedNodes>
+    <node>com.gg.proj.business.UserManager</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>public</VISIBILITY>
+</Diagram>
+

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.gg.proj</OriginalElement>
+  <nodes>
+    <node x="223.04583333333335" y="13.951171875">com.gg.proj.consumer</node>
+    <node x="99.27916666666667" y="324.951171875">com.gg.proj.app</node>
+    <node x="61.52532051282054" y="207.951171875">com.gg.proj.authentication</node>
+    <node x="246.27916666666667" y="324.951171875">com.gg.proj.webapp</node>
+    <node x="20.0" y="13.951171875">com.gg.proj.model</node>
+    <node x="0.0" y="422.951171875">com.gg.proj.technical</node>
+    <node x="201.22916666666669" y="110.951171875">com.gg.proj.business</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.gg.proj.business" target="com.gg.proj.model">
+      <point x="-47.33333333333334" y="-13.5" />
+      <point x="224.89583333333334" y="90.951171875" />
+      <point x="125.875" y="90.951171875" />
+      <point x="45.375" y="13.5" />
+    </edge>
+    <edge source="com.gg.proj.business" target="com.gg.proj.business">
+      <point x="-56.8" y="13.5" />
+      <point x="215.42916666666667" y="157.951171875" />
+      <point x="181.22916666666669" y="157.951171875" />
+      <point x="181.22916666666669" y="124.451171875" />
+      <point x="-71.0" y="-0.0" />
+    </edge>
+    <edge source="com.gg.proj.webapp" target="com.gg.proj.authentication">
+      <point x="-25.599999999999994" y="-13.5" />
+      <point x="284.6791666666667" y="284.951171875" />
+      <point x="222.52532051282054" y="284.951171875" />
+      <point x="69.0" y="13.5" />
+    </edge>
+    <edge source="com.gg.proj.webapp" target="com.gg.proj.consumer">
+      <point x="51.20000000000002" y="-13.5" />
+      <point x="361.4791666666667" y="304.951171875" />
+      <point x="366.5269230769231" y="304.951171875" />
+      <point x="366.5269230769231" y="90.951171875" />
+      <point x="350.84583333333336" y="90.951171875" />
+      <point x="56.80000000000001" y="13.5" />
+    </edge>
+    <edge source="com.gg.proj.authentication" target="com.gg.proj.model">
+      <point x="-61.33333333333334" y="-13.5" />
+      <point x="92.1919871794872" y="187.951171875" />
+      <point x="95.625" y="187.951171875" />
+      <point x="15.125" y="13.5" />
+    </edge>
+    <edge source="com.gg.proj.app" target="com.gg.proj.app">
+      <point x="0.0" y="13.5" />
+      <point x="152.77916666666667" y="371.951171875" />
+      <point x="79.27916666666667" y="371.951171875" />
+      <point x="79.27916666666667" y="338.451171875" />
+      <point x="-53.5" y="-0.0" />
+    </edge>
+    <edge source="com.gg.proj.app" target="com.gg.proj.authentication">
+      <point x="0.0" y="-13.5" />
+      <point x="152.77916666666667" y="304.951171875" />
+      <point x="176.52532051282054" y="304.951171875" />
+      <point x="23.0" y="13.5" />
+    </edge>
+    <edge source="com.gg.proj.webapp" target="com.gg.proj.business">
+      <point x="25.599999999999994" y="-13.5" />
+      <point x="335.87916666666666" y="304.951171875" />
+      <point x="339.9769230769231" y="304.951171875" />
+      <point x="339.9769230769231" y="187.951171875" />
+      <point x="329.0291666666667" y="187.951171875" />
+      <point x="56.79999999999998" y="13.5" />
+    </edge>
+    <edge source="com.gg.proj.model" target="com.gg.proj.model">
+      <point x="-45.375" y="13.5" />
+      <point x="35.125" y="60.951171875" />
+      <point x="0.0" y="60.951171875" />
+      <point x="0.0" y="27.451171875" />
+      <point x="-60.5" y="-0.0" />
+    </edge>
+    <edge source="com.gg.proj.webapp" target="com.gg.proj.webapp">
+      <point x="0.0" y="13.5" />
+      <point x="310.2791666666667" y="371.951171875" />
+      <point x="226.27916666666667" y="371.951171875" />
+      <point x="226.27916666666667" y="338.451171875" />
+      <point x="-64.0" y="-0.0" />
+    </edge>
+    <edge source="com.gg.proj.authentication" target="com.gg.proj.authentication">
+      <point x="-23.0" y="13.5" />
+      <point x="130.52532051282054" y="264.951171875" />
+      <point x="31.525320512820542" y="264.951171875" />
+      <point x="31.525320512820542" y="214.701171875" />
+      <point x="-92.0" y="-6.75" />
+    </edge>
+    <edge source="com.gg.proj.webapp" target="com.gg.proj.model">
+      <point x="-51.19999999999999" y="-13.5" />
+      <point x="259.07916666666665" y="294.951171875" />
+      <point x="3.162820512820531" y="294.951171875" />
+      <point x="3.162820512820531" y="90.951171875" />
+      <point x="65.375" y="90.951171875" />
+      <point x="-15.125" y="13.5" />
+    </edge>
+    <edge source="com.gg.proj.business" target="com.gg.proj.consumer">
+      <point x="0.0" y="-13.5" />
+      <point x="272.2291666666667" y="90.951171875" />
+      <point x="294.04583333333335" y="90.951171875" />
+      <point x="0.0" y="13.5" />
+    </edge>
+    <edge source="com.gg.proj.consumer" target="com.gg.proj.consumer">
+      <point x="-28.4" y="13.5" />
+      <point x="265.64583333333337" y="70.951171875" />
+      <point x="193.04583333333335" y="70.951171875" />
+      <point x="193.04583333333335" y="20.701171875" />
+      <point x="-71.0" y="-6.75" />
+    </edge>
+    <edge source="com.gg.proj.authentication" target="com.gg.proj.business">
+      <point x="61.333333333333314" y="-13.5" />
+      <point x="214.85865384615386" y="187.951171875" />
+      <point x="272.2291666666667" y="187.951171875" />
+      <point x="0.0" y="13.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="187.5" y="225.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>public</VISIBILITY>
+</Diagram>
+

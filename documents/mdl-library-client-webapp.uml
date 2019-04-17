@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>MODULES</ID>
+  <OriginalElement>mdl-library-client-webapp</OriginalElement>
+  <nodes>
+    <node x="106.86458333333333" y="210.0">mdl-library-client-webapp</node>
+    <node x="0.0" y="0.0">mdl-library-client-model</node>
+    <node x="62.701388888888886" y="140.0">mdl-library-client-business</node>
+    <node x="209.69791666666663" y="0.0">mdl-library-client-technical</node>
+    <node x="101.36458333333333" y="70.0">mdl-library-client-consumer</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="mdl-library-client-business" target="mdl-library-client-technical">
+      <point x="63.666666666666686" y="-10.0" />
+      <point x="221.86805555555557" y="120.0" />
+      <point x="321.2013888888889" y="120.0" />
+      <point x="321.2013888888889" y="45.0" />
+      <point x="306.69791666666663" y="45.0" />
+      <point x="0.0" y="10.0" />
+    </edge>
+    <edge source="mdl-library-client-webapp" target="mdl-library-client-model">
+      <point x="-70.5" y="-10.0" />
+      <point x="130.36458333333331" y="185.0" />
+      <point x="48.795138888888886" y="185.0" />
+      <point x="48.795138888888886" y="45.0" />
+      <point x="30.0" y="45.0" />
+      <point x="-60.0" y="10.0" />
+    </edge>
+    <edge source="mdl-library-client-consumer" target="mdl-library-client-technical">
+      <point x="49.75" y="-10.0" />
+      <point x="250.61458333333331" y="45.0" />
+      <point x="242.03125" y="45.0" />
+      <point x="-64.66666666666663" y="10.0" />
+    </edge>
+    <edge source="mdl-library-client-business" target="mdl-library-client-consumer">
+      <point x="0.0" y="-10.0" />
+      <point x="158.20138888888889" y="120.0" />
+      <point x="151.11458333333331" y="120.0" />
+      <point x="-49.75" y="10.0" />
+    </edge>
+    <edge source="mdl-library-client-webapp" target="mdl-library-client-consumer">
+      <point x="23.5" y="-10.0" />
+      <point x="224.36458333333331" y="185.0" />
+      <point x="264.2013888888889" y="185.0" />
+      <point x="264.2013888888889" y="110.0" />
+      <point x="250.61458333333331" y="110.0" />
+      <point x="49.75" y="10.0" />
+    </edge>
+    <edge source="mdl-library-client-consumer" target="mdl-library-client-model">
+      <point x="-49.75" y="-10.0" />
+      <point x="151.11458333333331" y="45.0" />
+      <point x="150.0" y="45.0" />
+      <point x="60.0" y="10.0" />
+    </edge>
+    <edge source="mdl-library-client-webapp" target="mdl-library-client-business">
+      <point x="-23.5" y="-10.0" />
+      <point x="177.36458333333331" y="185.0" />
+      <point x="158.20138888888889" y="185.0" />
+      <point x="0.0" y="10.0" />
+    </edge>
+    <edge source="mdl-library-client-business" target="mdl-library-client-model">
+      <point x="-63.66666666666663" y="-10.0" />
+      <point x="94.53472222222226" y="120.0" />
+      <point x="73.48958333333331" y="120.0" />
+      <point x="73.48958333333331" y="45.0" />
+      <point x="90.0" y="45.0" />
+      <point x="0.0" y="10.0" />
+    </edge>
+    <edge source="mdl-library-client-webapp" target="mdl-library-client-technical">
+      <point x="70.5" y="-10.0" />
+      <point x="271.3645833333333" y="185.0" />
+      <point x="333.30555555555554" y="185.0" />
+      <point x="333.30555555555554" y="45.0" />
+      <point x="371.36458333333337" y="45.0" />
+      <point x="64.66666666666676" y="10.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="233.5" y="132.5" />
+  <SelectedNodes />
+  <Categories />
+</Diagram>
+
