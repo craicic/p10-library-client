@@ -9,9 +9,10 @@ a search function and a manager for loans (consult & extend).
   
 This application has been started via [Spring Initializr](https://start.spring.io/).  
 
-##### Mutli-modules  
+##### Multi-modules  
 
-It's a multi-modules application with the following structure :\
+It's a multi-modules application with the following structure :
+
 ![Modules' dependencies](https://raw.githubusercontent.com/xxjokerx/library-client/master/documents/modules.png)
 
 lets review the stack used in main modules :
@@ -60,4 +61,4 @@ Under Deploy :
 Context-path : `/`\
 WAR or directory's URL : local path to your WAR
 
-Click Deploy and your done ! 
+Click Deploy and it's done ! 
