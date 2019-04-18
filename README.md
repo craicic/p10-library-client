@@ -54,7 +54,7 @@ You can either follow the same step as webservice's [step 9](https://github.com/
 
 Or
 
-Navigate to [http://localhost:8080/manager/html]() (you may need to configure the user in `$CATALINA_HOME/conf/tomcat-user.xml`)\
+Navigate to [http://localhost:8080/manager/html]() (you may need to configure the user in `$CATALINA_HOME/conf/tomcat-user.xml`)
 
 Under Deploy :
 

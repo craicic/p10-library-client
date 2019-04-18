@@ -2,7 +2,6 @@ package com.gg.proj.app;
 
 import com.gg.proj.authentication.CustomAuthenticationProvider;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -32,19 +31,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers( "/index").permitAll()
-                .antMatchers( "/").permitAll()
-                .antMatchers( "/book/*").permitAll()
-                .antMatchers( "/css/*").permitAll()
-                .antMatchers( "/login").permitAll()
+                .antMatchers("/index").permitAll()
+                .antMatchers("/").permitAll()
+                .antMatchers("/book/*").permitAll()
+                .antMatchers("/css/*").permitAll()
+                .antMatchers("/login").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-//                .loginPage("/login")
-//                .failureUrl("/login?error")
+                .loginPage("/login")
+                .failureUrl("/login?error")
 //                .loginProcessingUrl("/perform_login")
-//                .defaultSuccessUrl("/index.html", true)
-                //.failureUrl("/login.html?error=true")
+                .defaultSuccessUrl("/", true)
+//                .failureUrl("/login.html?error=true")
+                .usernameParameter("pseudo")
+                .passwordParameter("password")
 //                .failureHandler(
 //                        authenticationFailureHandler())
                 .and()

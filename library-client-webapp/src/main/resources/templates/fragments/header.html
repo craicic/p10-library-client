@@ -27,15 +27,6 @@
                     <a class="nav-link" th:href="@{/login}" th:text="#{nav.login}">Login<span
                             class="sr-only">(current)</span></a>
                 </li>
-                <li class="form-inline my-2 my-lg-0">
-                    <div>
-                        <select class="form-control" id="locales">
-                            <option value=""></option>
-                            <option value="US" th:text="US"></option>
-                            <option value="FR" th:text="FR"></option>
-                        </select>
-                    </div>
-                </li>
             </ul>
             <form class="form-inline my-2 my-lg-0" th:action="@{/book/search}">
                 <input class="form-control mr-sm-2" type="search" th:placeholder="#{nav.search.placeholder}"
@@ -46,6 +37,22 @@
             </form>
         </div>
     </nav>
+    <div class="nav-scroller bg-white shadow-sm">
+        <nav class="nav nav-underline">
+            <a class="form-inline mr-auto"></a>
+            <a class="nav-link" th:text="#{nav.language.label}"></a>
+            <a class="form-inline my-2 my-lg-0">
+                <div>
+                    <label for="locales" class="sr-only">Locales</label>
+                    <select class="form-control" id="locales">
+                        <option value=""></option>
+                        <option value="US" th:text="#{nav.language.english}"></option>
+                        <option value="FR" th:text="#{nav.language.french}"></option>
+                    </select>
+                </div>
+            </a>
+        </nav>
+    </div>
     <!-- BOOTSTRAP IMPORTS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
