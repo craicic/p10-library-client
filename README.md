@@ -6,7 +6,8 @@ This webapp call the webservice's methods to build web pages. It provide library
 a search function and a manager for loans (consult & extend).
   
 ## Technologies  
-  
+ 
+Java version : 8
 This application has been started via [Spring Initializr](https://start.spring.io/).  
 
 ##### Multi-modules  

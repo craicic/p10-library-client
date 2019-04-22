@@ -11,7 +11,10 @@ import org.springframework.ws.WebServiceMessageFactory;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
 
-
+/**
+ *
+ * This class performs the connection to the web service's user endpoint
+ */
 public class UserConnector extends WebServiceGatewaySupport {
 
     private static final Logger log = LoggerFactory.getLogger(UserConnector.class);

@@ -13,6 +13,10 @@ import org.springframework.ws.soap.client.core.SoapActionCallback;
 
 import java.util.UUID;
 
+/**
+ *
+ * This class performs the connection to the web service's profile endpoint
+ */
 public class ProfileConnector extends WebServiceGatewaySupport {
 
     private static final Logger log = LoggerFactory.getLogger(ProfileConnector.class);

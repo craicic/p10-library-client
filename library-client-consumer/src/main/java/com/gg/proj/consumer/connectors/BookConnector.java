@@ -9,6 +9,10 @@ import org.springframework.ws.WebServiceMessageFactory;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
 
+/**
+ *
+ * This class performs the connection to the web service's book endpoint
+ */
 public class BookConnector extends WebServiceGatewaySupport {
 
     private static final Logger log = LoggerFactory.getLogger(BookConnector.class);
@@ -28,6 +32,13 @@ public class BookConnector extends WebServiceGatewaySupport {
         this.serviceLocation = this.consumerProperties.getUri() + "/books";
     }
 
+    /**
+     * <p>Directly calls the Web-service's method getBook() from the Book service. It pass the id of a book
+     * and the WS provide the matching book.</p>
+     *
+     * @param id the id of the book
+     * @return a GetBookResponse.
+     */
     public GetBookResponse getBook(Integer id) {
         GetBookRequest request = new GetBookRequest();
         log.info("Requesting infos on book id : " + id);
@@ -40,6 +51,12 @@ public class BookConnector extends WebServiceGatewaySupport {
         return response;
     }
 
+    /**
+     * <p>Directly calls the Web-service's method listAllBooks() from the Book service. It ask the WS to provide a list
+     * of all books stored in DB</p>
+     *
+     * @return ListAllBooksResponse containing the list of all book
+     */
     public ListAllBooksResponse getAllBooks() {
         ListAllBooksRequest request = new ListAllBooksRequest();
         log.info("Listing all books exposed by web service");
@@ -50,6 +67,15 @@ public class BookConnector extends WebServiceGatewaySupport {
         return response;
     }
 
+    /**
+     *
+     * <p>Directly calls the Book WS. It ask WS to perform a search with following parameters.</p>
+     *
+     * @param page the current page
+     * @param size the size of a page
+     * @param keyWord the search keyword
+     * @return SearchBooksResponse containing several list and information.
+     */
     public SearchBooksResponse searchBooks(int page, int size, String keyWord) {
         SearchBooksRequest request = new SearchBooksRequest();
         log.info("Request a paged list of books containing the key work : " + keyWord + ", at page " + page + " with " + size + " books per page");
@@ -61,6 +87,19 @@ public class BookConnector extends WebServiceGatewaySupport {
                 new SoapActionCallback("http://proj.gg.com/service/library-client"));
     }
 
+    /**
+     *
+     * <p>Directly calls the Book WS. It ask WS to perform a search with following parameters.</p>
+     *
+     * @param page the current page
+     * @param size the size of a page
+     * @param keyWord the search keyword
+     * @param languageId the id of selected language
+     * @param libraryId the id of selected library
+     * @param topicId the id of selected topic
+     * @param available is the book in stock?
+     * @return FilterBooksResponse containing several list and information.
+     */
     public FilterBooksResponse filterBooks(int page, int size, String keyWord, Integer languageId, Integer libraryId, Integer topicId, boolean available) {
         FilterBooksRequest request = new FilterBooksRequest();
         log.info("Filter books containing the key work : " + keyWord + ", at page " + page + " with " + size +

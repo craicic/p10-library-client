@@ -9,6 +9,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
 
+/**
+ *
+ * Consumer class, it call the connector
+ */
 @Component
 public class BookConsumer extends WebServiceGatewaySupport {
 

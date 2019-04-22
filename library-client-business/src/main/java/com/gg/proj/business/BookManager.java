@@ -13,6 +13,10 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+/**
+ *
+ * Business class, its role is to call the mapper to map objects
+ */
 @Component
 public class BookManager {
     private static final Logger log = LoggerFactory.getLogger(BookManager.class);

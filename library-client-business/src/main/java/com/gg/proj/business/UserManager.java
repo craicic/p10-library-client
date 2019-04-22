@@ -9,6 +9,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+
+/**
+ *
+ * Business class, its role is to call the mapper to map objects
+ */
 @Component
 public class UserManager {
 

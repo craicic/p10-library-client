@@ -19,6 +19,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+
+/**
+ *
+ * Business class, its role is to call the mapper to map objects
+ */
 @Component
 public class LoanManager {
 

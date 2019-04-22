@@ -11,6 +11,11 @@ import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
+
+/**
+ *
+ * Business class, its role is to call the mapper to map objects
+ */
 @Component
 public class ProfileManager {
 
