@@ -1,4 +1,4 @@
-# Client webapp for the library project  
+# Client webapp for the [library project](https://github.com/xxjokerx/library)
   
 ## Description  
   
@@ -45,8 +45,8 @@ Then unzip it.
 
 ##### 3 - Edit the configuration
 
-Go to library-client/library-client-webapp/src/main/application.properties the edit `consumer.webservice.uri=http://localhost:8080/{your-webservice-context-folder}/ws`\
-Then edit library-client-consumer/pom.xml and configure the property base.wsdl.location as follow `<wsdl.base.location>http://localhost:8080/{your-webservice-context-folder}/ws</wsdl.base.location>`
+Go to library-client/library-client-webapp/src/main/application.properties then edit `consumer.webservice.uri=http://localhost:8080/{your-webservice-context-folder}/{webservice.location}`\
+Then edit library-client-consumer/pom.xml and configure the property base.wsdl.location as follow `<wsdl.base.location>http://localhost:8080/{your-webservice-context-folder}/{webservice.location}</wsdl.base.location>`
 
 ##### 4 - Package the application
 
