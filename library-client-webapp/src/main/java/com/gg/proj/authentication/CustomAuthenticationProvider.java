@@ -4,6 +4,7 @@ import com.gg.proj.business.ProfileManager;
 import com.gg.proj.business.UserManager;
 import com.gg.proj.model.TokenModel;
 import com.gg.proj.model.UserModel;
+import com.gg.proj.technical.CustomStringEncryptor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 
 @Component
@@ -40,9 +40,9 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         String pseudo = authentication.getName();
         String password = authentication.getCredentials().toString();
 
-        String encodedPassword = Base64.getEncoder().encodeToString(password.getBytes());
+        String encryptedPassword = CustomStringEncryptor.encrypt(password);
 
-        TokenModel token = userManager.loginUser(pseudo, encodedPassword);
+        TokenModel token = userManager.loginUser(pseudo, encryptedPassword);
 
         if (token != null) {
             UserModel user = profileManager.getUser(token.getUserId(), token.getTokenUUID());

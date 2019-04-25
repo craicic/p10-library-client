@@ -11,6 +11,6 @@ public interface UserMapper {
 
     @Mappings({
             @Mapping(target = "tokenUUID", expression = "java(java.util.UUID.fromString(token.getTokenUUID()))")
-            })
+    })
     TokenModel tokenToTokenModel(Token token);
 }

@@ -2,7 +2,6 @@ package com.gg.proj.consumer;
 
 import com.gg.proj.consumer.connectors.LoanConnector;
 import com.gg.proj.consumer.wsdl.loans.FindAllLoansByUserIdResponse;
-import com.gg.proj.consumer.wsdl.loans.GetLoanResponse;
 import com.gg.proj.consumer.wsdl.loans.Loan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- *
  * Consumer class, it call the connector
  */
 @Component

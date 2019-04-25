@@ -21,7 +21,6 @@ import java.util.UUID;
 
 
 /**
- *
  * Business class, its role is to call the mapper to map objects
  */
 @Component
@@ -73,6 +72,6 @@ public class LoanManager {
 
         }
 
-        loanConsumer.extend(loanMapper.loanModelToLoan(loanModel),tokenUUID.toString());
+        loanConsumer.extend(loanMapper.loanModelToLoan(loanModel), tokenUUID.toString());
     }
 }

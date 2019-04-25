@@ -9,10 +9,7 @@ import org.springframework.ws.WebServiceMessageFactory;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
 
-import javax.naming.ldap.ExtendedRequest;
-
 /**
- *
  * This class performs the connection to the web service's loan endpoint
  */
 public class LoanConnector extends WebServiceGatewaySupport {

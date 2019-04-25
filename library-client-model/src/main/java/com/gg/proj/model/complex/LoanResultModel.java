@@ -39,6 +39,6 @@ public class LoanResultModel {
                 ", bookMinModel=" + bookMinModel +
                 '}';
     }
-    
-    
+
+
 }

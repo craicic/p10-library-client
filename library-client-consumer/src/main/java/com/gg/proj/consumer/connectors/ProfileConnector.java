@@ -14,7 +14,6 @@ import org.springframework.ws.soap.client.core.SoapActionCallback;
 import java.util.UUID;
 
 /**
- *
  * This class performs the connection to the web service's profile endpoint
  */
 public class ProfileConnector extends WebServiceGatewaySupport {
@@ -38,7 +37,7 @@ public class ProfileConnector extends WebServiceGatewaySupport {
 
     public User getProfile(Integer userId, UUID tokenUUID) {
         GetProfileRequest request = new GetProfileRequest();
-        log.info("Requesting profile for user : " + userId + " with token : " + tokenUUID.toString());
+        log.info("Requesting profile for user : " + userId + " with token : [" + tokenUUID.toString() + "]");
         request.setId(userId);
         request.setTokenUUID(tokenUUID.toString());
 

@@ -5,7 +5,6 @@ import com.gg.proj.consumer.connectors.LoanConnector;
 import com.gg.proj.consumer.connectors.ProfileConnector;
 import com.gg.proj.consumer.connectors.UserConnector;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

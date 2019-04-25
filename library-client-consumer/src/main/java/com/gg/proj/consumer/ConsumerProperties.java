@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 public class ConsumerProperties {
 
     /**
-     *
      * URI of the SOAP web service that this application uses to reach the endpoint.
      */
     private String uri = "http://localhost:8080/ws";

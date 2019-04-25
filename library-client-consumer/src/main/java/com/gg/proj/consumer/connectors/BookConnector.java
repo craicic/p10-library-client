@@ -10,7 +10,6 @@ import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
 
 /**
- *
  * This class performs the connection to the web service's book endpoint
  */
 public class BookConnector extends WebServiceGatewaySupport {
@@ -68,17 +67,16 @@ public class BookConnector extends WebServiceGatewaySupport {
     }
 
     /**
-     *
      * <p>Directly calls the Book WS. It ask WS to perform a search with following parameters.</p>
      *
-     * @param page the current page
-     * @param size the size of a page
+     * @param page    the current page
+     * @param size    the size of a page
      * @param keyWord the search keyword
      * @return SearchBooksResponse containing several list and information.
      */
     public SearchBooksResponse searchBooks(int page, int size, String keyWord) {
         SearchBooksRequest request = new SearchBooksRequest();
-        log.info("Request a paged list of books containing the key work : " + keyWord + ", at page " + page + " with " + size + " books per page");
+        log.info("Request a paged list of books containing the keyword : " + keyWord + ", at page " + page + " with " + size + " books per page");
         request.setPage(page);
         request.setSize(size);
         request.setKeyWord(keyWord);
@@ -88,22 +86,21 @@ public class BookConnector extends WebServiceGatewaySupport {
     }
 
     /**
-     *
      * <p>Directly calls the Book WS. It ask WS to perform a search with following parameters.</p>
      *
-     * @param page the current page
-     * @param size the size of a page
-     * @param keyWord the search keyword
+     * @param page       the current page
+     * @param size       the size of a page
+     * @param keyWord    the search keyword
      * @param languageId the id of selected language
-     * @param libraryId the id of selected library
-     * @param topicId the id of selected topic
-     * @param available is the book in stock?
+     * @param libraryId  the id of selected library
+     * @param topicId    the id of selected topic
+     * @param available  is the book in stock?
      * @return FilterBooksResponse containing several list and information.
      */
     public FilterBooksResponse filterBooks(int page, int size, String keyWord, Integer languageId, Integer libraryId, Integer topicId, boolean available) {
         FilterBooksRequest request = new FilterBooksRequest();
-        log.info("Filter books containing the key work : " + keyWord + ", at page " + page + " with " + size +
-                " books per page -- languageId : [" + languageId + "] -- libraryId : [" + libraryId + "] -- topicId : [" + topicId + "]  -- Available == " + available );
+        log.info("Filter books containing the keyword : " + keyWord + ", at page " + page + " with " + size +
+                " books per page -- languageId : [" + languageId + "] -- libraryId : [" + libraryId + "] -- topicId : [" + topicId + "]  -- Available == " + available);
         request.setPage(page);
         request.setSize(size);
         request.setKeyWord(keyWord);

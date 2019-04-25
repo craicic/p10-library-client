@@ -40,7 +40,7 @@ public class LoanController {
     public String extendMyLoan(Model model,
                                @RequestParam int loanId) {
         UserInfo userInfo = (UserInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("loanId" , loanId);
+        model.addAttribute("loanId", loanId);
         return "loans/extend";
     }
 

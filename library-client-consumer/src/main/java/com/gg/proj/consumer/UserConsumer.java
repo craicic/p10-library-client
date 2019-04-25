@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- *
  * Consumer class, it call the connector
  */
 @Component
@@ -27,4 +26,7 @@ public class UserConsumer {
         return userConnector.loginUser(pseudo, password);
     }
 
+    public String logoutUser(String tokenUUID) {
+        return userConnector.logoutUser(tokenUUID);
+    }
 }

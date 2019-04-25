@@ -8,6 +8,6 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface ProfileMapper {
 
-    @Mapping(source="pseudo", target="username")
+    @Mapping(source = "pseudo", target = "username")
     UserModel userToUserModel(User user);
 }

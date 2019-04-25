@@ -12,7 +12,7 @@ public interface BookMapper {
 
     BookModel bookXsdToBookModel(Book book);
 
-    List<BookModel> listXsdToListModel (Collection<Book> listXsd);
+    List<BookModel> listXsdToListModel(Collection<Book> listXsd);
 
     List<BookModel> bookListToBookModelList(List<Book> books);
 

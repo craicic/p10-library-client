@@ -1,18 +1,22 @@
-.spacer{
+.spacer {
     padding-top: 40px;
 }
-.spacer-half{
+
+.spacer-half {
     padding-top: 20px;
 }
-.spacer-quad{
+
+.spacer-quad {
     padding-top: 160px;
 }
+
 .form-signin {
     width: 100%;
     max-width: 330px;
     padding: 15px;
     margin: auto;
 }
+
 .error {
     padding: 15px;
     margin-bottom: 20px;
@@ -21,6 +25,7 @@
     color: #a94442;
     background-color: #f2dede;
 }
+
 .logout {
     padding: 15px;
     margin-bottom: 20px;

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 import java.util.UUID;
 
 /**
- *
  * Consumer class, it call the connector
  */
 @Component

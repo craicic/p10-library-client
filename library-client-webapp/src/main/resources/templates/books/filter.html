@@ -20,7 +20,8 @@
         </div>
         <div class="col-lg">
             <div>
-                <div class="lead" th:if="${books.isEmpty()}" th:text="#{book.search.none}">No result match your search</div>
+                <div class="lead" th:if="${books.isEmpty()}" th:text="#{book.search.none}">No result match your search
+                </div>
                 <table class="table" th:unless="${books.isEmpty()}">
                     <thead>
                     <tr>

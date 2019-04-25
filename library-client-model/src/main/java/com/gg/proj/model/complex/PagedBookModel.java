@@ -33,7 +33,7 @@ public class PagedBookModel {
         this.totalPages = totalPages;
     }
 
-    public void put(List<BookModel> bookList, Integer totalPages){
+    public void put(List<BookModel> bookList, Integer totalPages) {
         this.bookList = bookList;
         this.totalPages = totalPages;
     }

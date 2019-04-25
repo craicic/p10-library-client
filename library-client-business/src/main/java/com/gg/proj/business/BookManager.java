@@ -2,8 +2,14 @@ package com.gg.proj.business;
 
 import com.gg.proj.business.mapper.BookMapper;
 import com.gg.proj.consumer.BookConsumer;
-import com.gg.proj.consumer.wsdl.books.*;
-import com.gg.proj.model.*;
+import com.gg.proj.consumer.wsdl.books.FilterBooksResponse;
+import com.gg.proj.consumer.wsdl.books.GetBookResponse;
+import com.gg.proj.consumer.wsdl.books.ListAllBooksResponse;
+import com.gg.proj.consumer.wsdl.books.SearchBooksResponse;
+import com.gg.proj.model.BookModel;
+import com.gg.proj.model.LanguageModel;
+import com.gg.proj.model.LibraryModel;
+import com.gg.proj.model.TopicModel;
 import com.gg.proj.model.complex.PagedBookModel;
 import com.gg.proj.model.complex.SearchResultModel;
 import org.slf4j.Logger;
@@ -14,7 +20,6 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 /**
- *
  * Business class, its role is to call the mapper to map objects
  */
 @Component
@@ -62,7 +67,7 @@ public class BookManager {
         List<LibraryModel> libraries = bookMapper.libraryListToLibraryModelList(response.getLibraries());
         List<TopicModel> topics = bookMapper.topicListToTopicModelList(response.getTopics());
 
-        return new SearchResultModel(books,languages,libraries,topics,response.getTotalPages(),response.getKeyWord());
+        return new SearchResultModel(books, languages, libraries, topics, response.getTotalPages(), response.getKeyWord());
 
     }
 

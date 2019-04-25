@@ -16,7 +16,8 @@ public class BookModel {
     private Integer languageId;
 
 
-    public BookModel(){}
+    public BookModel() {
+    }
 
     public BookModel(Integer id, String author, String title, String isbn, Integer quantity, String summary,
                      List<Integer> topicIds, Integer libraryId, Integer languageId) {

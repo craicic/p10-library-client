@@ -11,8 +11,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 @EnableWebSecurity
 //@EnableGlobalMethodSecurity(prePostEnabled = true)
-
-//this caused a bug when deploy on external tomcat
 //@ComponentScan("com.gg.proj.authentication")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -41,18 +39,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/login")
                 .failureUrl("/login?error")
-//                .loginProcessingUrl("/perform_login")
                 .defaultSuccessUrl("/", true)
-//                .failureUrl("/login.html?error=true")
                 .usernameParameter("pseudo")
                 .passwordParameter("password")
-//                .failureHandler(
-//                        authenticationFailureHandler())
                 .and()
                 .logout()
                 .logoutUrl("/perform_logout")
                 .deleteCookies("JSESSIONID")
-//                .logoutSuccessHandler(logoutSuccessHandler())
         ;
     }
 
