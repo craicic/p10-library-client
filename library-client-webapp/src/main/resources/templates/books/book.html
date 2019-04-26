@@ -46,7 +46,7 @@
             <tr>
                 <th th:text="#{book.author}">AUTHOR</th>
                 <th th:text="#{book.title}">TITLE</th>
-                <th th:text="#{book.title}">TITLE</th>
+                <th th:text="#{book.release}">RELEASE</th>
                 <th th:text="#{book.title}">TITLE</th>
                 <th th:text="#{book.title}">TITLE</th>
             </tr>
@@ -55,7 +55,7 @@
             <tr>
                 <td th:text="${book.author}"></td>
                 <td th:text="${book.title}"></td>
-                <td th:text="${book.title}"></td>
+                <td th:text="${book.publicationDate.getYear()}"></td>
                 <td th:text="${book.title}"></td>
                 <td th:text="${book.title}"></td>
             </tr>

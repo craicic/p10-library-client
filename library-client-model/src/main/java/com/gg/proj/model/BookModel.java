@@ -1,5 +1,6 @@
 package com.gg.proj.model;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -11,6 +12,7 @@ public class BookModel {
     private String isbn;
     private Integer quantity;
     private String summary;
+    private LocalDate publicationDate;
     private List<Integer> topicIds;
     private Integer libraryId;
     private Integer languageId;
@@ -19,7 +21,7 @@ public class BookModel {
     public BookModel() {
     }
 
-    public BookModel(Integer id, String author, String title, String isbn, Integer quantity, String summary,
+    public BookModel(Integer id, String author, String title, String isbn, Integer quantity, String summary, LocalDate publicationDate,
                      List<Integer> topicIds, Integer libraryId, Integer languageId) {
         this.id = id;
         this.author = author;
@@ -27,6 +29,7 @@ public class BookModel {
         this.isbn = isbn;
         this.quantity = quantity;
         this.summary = summary;
+        this.publicationDate = publicationDate;
         this.topicIds = topicIds;
         this.libraryId = libraryId;
         this.languageId = languageId;
@@ -80,6 +83,14 @@ public class BookModel {
         this.summary = summary;
     }
 
+    public LocalDate getPublicationDate() {
+        return publicationDate;
+    }
+
+    public void setPublicationDate(LocalDate publicationDate) {
+        this.publicationDate = publicationDate;
+    }
+
     public List<Integer> getTopicIds() {
         return topicIds;
     }
@@ -113,6 +124,7 @@ public class BookModel {
                 ", isbn='" + isbn + '\'' +
                 ", quantity=" + quantity +
                 ", summary='" + summary + '\'' +
+                ", publicationDate=" + publicationDate +
                 ", topicIds=" + topicIds +
                 ", libraryId=" + libraryId +
                 ", languageId=" + languageId +
