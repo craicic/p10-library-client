@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:include="fragments/head :: header">
     <title id="pageTitle">Book detail</title>
@@ -18,7 +18,8 @@
         <p class="lead" th:text="${book.author}">This is a simple hero unit, a simple jumbotron-style component for
             calling extra attention to featured content or information.</p>
         <hr class="my-4">
-        <p th:text="${shortDescription}">It uses utility classes for typography and spacing to space content out within the
+        <p th:text="${shortDescription}">It uses utility classes for typography and spacing to space content out within
+            the
             larger container.</p>
         <p>
             <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample"
@@ -40,28 +41,51 @@
         <h3 th:text="#{book.detail.info}">Book</h3>
 
         <div class="spacer"></div>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th th:text="#{book.author}">AUTHOR</th>
-                    <th th:text="#{book.title}">TITLE</th>
-                    <th th:text="#{book.release}">RELEASE</th>
-                    <th th:text="#{library.name}">LIBRARY</th>
-                    <th th:text="#{nav.language.label.caps}">LANGUAGE</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td th:text="${book.author}"></td>
-                    <td th:text="${book.title}"></td>
-                    <td th:text="${book.publicationDate.getYear()}"></td>
-                    <td th:text="${library.name}"></td>
-                    <td th:text="${language.name}"></td>
-                </tr>
-                </tbody>
-            </table>
+        <table class="table">
+            <thead>
+            <tr>
+                <th th:text="#{book.author}">AUTHOR</th>
+                <th th:text="#{book.title}">TITLE</th>
+                <th th:text="#{book.release}">RELEASE</th>
+                <th th:text="#{library.name}">LIBRARY</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td th:text="${book.author}"></td>
+                <td th:text="${book.title}"></td>
+                <td th:text="${book.publicationDate.getYear()}"></td>
+                <td th:text="${library.name}"></td>
+            </tr>
+            </tbody>
+        </table>
         <div class="spacer"></div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th th:text="#{nav.language.label.caps}">LANGUAGE</th>
+                <th th:text="#{book.topic}">TOPICS</th>
+                <th sec:authorize="isAuthenticated()" th:text="#{book.status}">STATUS</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td th:text="${language.name}"></td>
+                <td>
+                    <div th:each="topic :${topics}">
+                        <div th:text="${topic.name}" class="badge badge-primary"></div>
+                    </div>
+                </td>
+                <th sec:authorize="isAuthenticated()">
+                    <div th:if="${book.quantity > 0}" th:text="#{book.is.available}" class="badge badge-info"></div>
 
+                    <div sec:authorize="isAuthenticated()" th:if="${book.quantity <= 0}"
+                         th:text="#{book.isnot.available}" class="badge badge-danger"></div>
+                </th>
+            </tr>
+            </tbody>
+        </table>
+        <div class="spacer"></div>
     </div>
 </div>
 </body>

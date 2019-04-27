@@ -38,7 +38,7 @@ public class BookController {
         model.addAttribute("book", resultModel.getBookModel());
         model.addAttribute("library", resultModel.getLibraryModel());
         model.addAttribute("language", resultModel.getLanguageModel());
-        model.addAttribute("topic", resultModel.getTopicModelList());
+        model.addAttribute("topics", resultModel.getTopicModelList());
         String shortDescription = resultModel.getBookModel().getSummary();
         if (shortDescription.length() > 30)
             shortDescription = shortDescription.substring(0, 30) + "...";
