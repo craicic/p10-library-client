@@ -2,12 +2,15 @@ package com.gg.proj.consumer.connectors;
 
 import com.gg.proj.consumer.ConsumerProperties;
 import com.gg.proj.consumer.wsdl.books.*;
+import com.gg.proj.model.TopicModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.WebServiceMessageFactory;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
+
+import java.util.List;
 
 /**
  * This class performs the connection to the web service's book endpoint
@@ -110,5 +113,23 @@ public class BookConnector extends WebServiceGatewaySupport {
         request.setAvailable(available);
         return (FilterBooksResponse) getWebServiceTemplate().marshalSendAndReceive(serviceLocation, request,
                 new SoapActionCallback("http://proj.gg.com/service/library-client"));
+    }
+
+    public Library getLibrary(Integer libraryId) {
+        GetLibraryRequest request = new GetLibraryRequest();
+        log.info("Requesting Library for library = [" + libraryId +"]");
+        request.setId(libraryId);
+        GetLibraryResponse response = (GetLibraryResponse) getWebServiceTemplate().marshalSendAndReceive(serviceLocation, request,
+                new SoapActionCallback("http://proj.gg.com/service/library-client"));
+        return response.getLibrary();
+    }
+
+    public Language getLanguage(Integer languageId) {
+        GetLanguageRequest request = new GetLanguageRequest();
+        log.info("Requesting Language for languageId = [" + languageId +"]");
+        request.setId(languageId);
+        GetLanguageResponse response = (GetLanguageResponse) getWebServiceTemplate().marshalSendAndReceive(serviceLocation, request,
+                new SoapActionCallback("http://proj.gg.com/service/library-client"));
+        return response.getLanguage();
     }
 }

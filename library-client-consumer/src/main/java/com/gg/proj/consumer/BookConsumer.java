@@ -1,15 +1,14 @@
 package com.gg.proj.consumer;
 
 import com.gg.proj.consumer.connectors.BookConnector;
-import com.gg.proj.consumer.wsdl.books.FilterBooksResponse;
-import com.gg.proj.consumer.wsdl.books.GetBookResponse;
-import com.gg.proj.consumer.wsdl.books.ListAllBooksResponse;
-import com.gg.proj.consumer.wsdl.books.SearchBooksResponse;
+import com.gg.proj.consumer.wsdl.books.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
+
+import java.util.List;
 
 /**
  * Consumer class, it call the connector
@@ -42,4 +41,13 @@ public class BookConsumer extends WebServiceGatewaySupport {
     public FilterBooksResponse filterBooks(int page, int size, String keyWord, Integer languageId, Integer libraryId, Integer topicId, boolean available) {
         return bookConnector.filterBooks(page, size, keyWord, languageId, libraryId, topicId, available);
     }
+
+    public Library getLibrary(Integer libraryId) {
+        return bookConnector.getLibrary(libraryId);
+    }
+
+    public Language getLanguage(Integer languageId) {
+        return bookConnector.getLanguage(languageId);
+    }
+
 }

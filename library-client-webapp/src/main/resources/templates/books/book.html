@@ -18,7 +18,7 @@
         <p class="lead" th:text="${book.author}">This is a simple hero unit, a simple jumbotron-style component for
             calling extra attention to featured content or information.</p>
         <hr class="my-4">
-        <p th:text="${book.summary}">It uses utility classes for typography and spacing to space content out within the
+        <p th:text="${shortDescription}">It uses utility classes for typography and spacing to space content out within the
             larger container.</p>
         <p>
             <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample"
@@ -30,7 +30,7 @@
 
 
     <div class="collapse" id="collapseExample">
-        <div class="card card-body">
+        <div class="card card-body" th:text="${book.summary}">
             Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim
             keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
         </div>
@@ -40,27 +40,28 @@
         <h3 th:text="#{book.detail.info}">Book</h3>
 
         <div class="spacer"></div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th th:text="#{book.author}">AUTHOR</th>
+                    <th th:text="#{book.title}">TITLE</th>
+                    <th th:text="#{book.release}">RELEASE</th>
+                    <th th:text="#{library.name}">LIBRARY</th>
+                    <th th:text="#{nav.language.label.caps}">LANGUAGE</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td th:text="${book.author}"></td>
+                    <td th:text="${book.title}"></td>
+                    <td th:text="${book.publicationDate.getYear()}"></td>
+                    <td th:text="${library.name}"></td>
+                    <td th:text="${language.name}"></td>
+                </tr>
+                </tbody>
+            </table>
+        <div class="spacer"></div>
 
-        <table class="table">
-            <thead>
-            <tr>
-                <th th:text="#{book.author}">AUTHOR</th>
-                <th th:text="#{book.title}">TITLE</th>
-                <th th:text="#{book.release}">RELEASE</th>
-                <th th:text="#{book.title}">TITLE</th>
-                <th th:text="#{book.title}">TITLE</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td th:text="${book.author}"></td>
-                <td th:text="${book.title}"></td>
-                <td th:text="${book.publicationDate.getYear()}"></td>
-                <td th:text="${book.title}"></td>
-                <td th:text="${book.title}"></td>
-            </tr>
-            </tbody>
-        </table>
     </div>
 </div>
 </body>

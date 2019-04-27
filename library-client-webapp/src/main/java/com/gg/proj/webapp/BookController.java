@@ -3,6 +3,7 @@ package com.gg.proj.webapp;
 import com.gg.proj.authentication.UserInfo;
 import com.gg.proj.business.BookManager;
 import com.gg.proj.model.BookModel;
+import com.gg.proj.model.complex.BookResultModel;
 import com.gg.proj.model.complex.FormResultModel;
 import com.gg.proj.model.complex.PagedBookModel;
 import com.gg.proj.model.complex.SearchResultModel;
@@ -31,8 +32,18 @@ public class BookController {
     @RequestMapping(value = "/book/get")
     public String book(Model model,
                        @RequestParam Integer id) {
-        BookModel bookModel = bookManager.getBookById(id);
-        model.addAttribute("book", bookModel);
+        BookResultModel resultModel = bookManager.getBookById(id);
+        log.info("BookModel : langugageId = " + resultModel.getBookModel().getLanguageId());
+
+        model.addAttribute("book", resultModel.getBookModel());
+        model.addAttribute("library", resultModel.getLibraryModel());
+        model.addAttribute("language", resultModel.getLanguageModel());
+        model.addAttribute("topic", resultModel.getTopicModelList());
+        String shortDescription = resultModel.getBookModel().getSummary();
+        if (shortDescription.length() > 30)
+            shortDescription = shortDescription.substring(0, 30) + "...";
+
+        model.addAttribute("shortDescription", shortDescription);
         return "books/book";
     }
 

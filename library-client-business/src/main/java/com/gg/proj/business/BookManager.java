@@ -1,15 +1,16 @@
 package com.gg.proj.business;
 
 import com.gg.proj.business.mapper.BookMapper;
+import com.gg.proj.business.mapper.LanguageMapper;
+import com.gg.proj.business.mapper.LibraryMapper;
+import com.gg.proj.business.mapper.TopicMapper;
 import com.gg.proj.consumer.BookConsumer;
-import com.gg.proj.consumer.wsdl.books.FilterBooksResponse;
-import com.gg.proj.consumer.wsdl.books.GetBookResponse;
-import com.gg.proj.consumer.wsdl.books.ListAllBooksResponse;
-import com.gg.proj.consumer.wsdl.books.SearchBooksResponse;
+import com.gg.proj.consumer.wsdl.books.*;
 import com.gg.proj.model.BookModel;
 import com.gg.proj.model.LanguageModel;
 import com.gg.proj.model.LibraryModel;
 import com.gg.proj.model.TopicModel;
+import com.gg.proj.model.complex.BookResultModel;
 import com.gg.proj.model.complex.PagedBookModel;
 import com.gg.proj.model.complex.SearchResultModel;
 import org.slf4j.Logger;
@@ -30,16 +31,47 @@ public class BookManager {
 
     private BookMapper bookMapper;
 
-    @Autowired
-    public BookManager(BookConsumer bookConsumer, BookMapper bookMapper) {
-        this.bookConsumer = bookConsumer;
-        this.bookMapper = bookMapper;
+    private LanguageMapper languageMapper;
+
+    private LibraryMapper libraryMapper;
+
+    private TopicMapper topicMapper;
+
+    public BookManager() {
     }
 
-    public BookModel getBookById(Integer id) {
+    @Autowired
+    public BookManager(BookConsumer bookConsumer, BookMapper bookMapper, LanguageMapper languageMapper, LibraryMapper libraryMapper, TopicMapper topicMapper) {
+        this.bookConsumer = bookConsumer;
+        this.bookMapper = bookMapper;
+        this.languageMapper = languageMapper;
+        this.libraryMapper = libraryMapper;
+        this.topicMapper = topicMapper;
+    }
+
+
+
+    public BookResultModel getBookById(Integer id) {
         GetBookResponse response;
         response = bookConsumer.getBook(id);
-        return bookMapper.bookFullToBookModel(response.getBookFull());
+
+        Library library = response.getBookFull().getLibrary();
+        Language language = response.getBookFull().getLanguage();
+        List<Topic> topicList = response.getBookFull().getTopics();
+
+        BookModel bookModel = bookMapper.bookFullToBookModel(response.getBookFull());
+        LibraryModel libraryModel = libraryMapper.libraryToLibraryModel(library);
+        LanguageModel languageModel = languageMapper.languageToLanguageModel(language);
+        List<TopicModel> topicModelList = topicMapper.topicListToTopicEntityList(topicList);
+
+        BookResultModel model = new BookResultModel();
+
+        model.setBookModel(bookModel);
+        model.setLibraryModel(libraryModel);
+        model.setLanguageModel(languageModel);
+        model.setTopicModelList(topicModelList);
+
+        return model;
     }
 
     public List<BookModel> getAllBooks() {
