@@ -19,7 +19,13 @@
         </div>
         <div class="col-lg">
             <div>
-                <div class="lead" th:if="${books.isEmpty()}" th:text="#{book.search.none}">No result match your search
+                <div th:if="${books.isEmpty()}">
+                    <div class="lead" th:text="#{book.search.none}">No result match your
+                        search
+                    </div>
+                    <div class="spacer"></div>
+                    <a th:href="@{search(keyWord=${keyWord})}" class="btn btn-primary" th:text="#{back}">Back
+                    </a>
                 </div>
                 <table class="table" th:unless="${books.isEmpty()}">
                     <thead>

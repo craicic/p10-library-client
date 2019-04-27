@@ -33,12 +33,13 @@ public class BookController {
     public String book(Model model,
                        @RequestParam Integer id) {
         BookResultModel resultModel = bookManager.getBookById(id);
-        log.info("BookModel : langugageId = " + resultModel.getBookModel().getLanguageId());
+        log.info("");
 
         model.addAttribute("book", resultModel.getBookModel());
         model.addAttribute("library", resultModel.getLibraryModel());
         model.addAttribute("language", resultModel.getLanguageModel());
         model.addAttribute("topics", resultModel.getTopicModelList());
+
         String shortDescription = resultModel.getBookModel().getSummary();
         if (shortDescription.length() > 30)
             shortDescription = shortDescription.substring(0, 30) + "...";

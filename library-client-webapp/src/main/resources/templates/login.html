@@ -10,24 +10,24 @@
 
 <form class="form-signin" th:action="@{/login}" method="post">
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <h1 class="h3 mb-3 font-weight-normal" th:text="#{login.welcome}">Please sign in</h1>
 
     <div class="error" th:unless="${errorMessage eq null}">Invalid credentials !</div>
     <div class="logout" th:unless="${logoutMessage eq null}">You've been logout</div>
 
     <label for="inputUsername" class="sr-only">Email address</label>
-    <input type="text" id="inputUsername" class="form-control" placeholder="Username" required="" autofocus=""
+    <input type="text" id="inputUsername" class="form-control" th:placeholder="#{login.username}" required="" autofocus=""
            name="pseudo">
 
     <div class="spacer-half"></div>
 
     <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="" name="password">
+    <input type="password" id="inputPassword" class="form-control" th:placeholder="#{login.password}" required="" name="password">
 
     <div class="spacer"></div>
 
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-    <a th:href="@{/}">Return to the index</a>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" th:text="#{login.sign}">Sign in</button>
+    <a th:href="@{/}" th:text="#{login.return}">Return to the index</a>
     <p class="mt-5 mb-3 text-muted">© 2019</p>
 
     <input type="hidden" name="${_csrf.parameterName}"
