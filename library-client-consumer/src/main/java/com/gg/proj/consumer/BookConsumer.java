@@ -27,7 +27,7 @@ public class BookConsumer extends WebServiceGatewaySupport {
         this.bookConnector = bookConnector;
     }
 
-    public GetBookResponse getBook(Integer id) {
+    public GetBookResponse getBook(Integer id) throws Exception {
         return bookConnector.getBook(id);
     }
 

@@ -2,7 +2,6 @@ package com.gg.proj.consumer.connectors;
 
 import com.gg.proj.consumer.ConsumerProperties;
 import com.gg.proj.consumer.wsdl.books.*;
-import com.sun.javaws.exceptions.InvalidArgumentException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +9,8 @@ import org.springframework.ws.WebServiceMessageFactory;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.SoapFaultClientException;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
+
+import java.util.EmptyStackException;
 
 /**
  * This class performs the connection to the web service's book endpoint
@@ -40,7 +41,7 @@ public class BookConnector extends WebServiceGatewaySupport {
      * @param id the id of the book
      * @return a GetBookResponse.
      */
-    public GetBookResponse getBook(Integer id) {
+    public GetBookResponse getBook(Integer id) throws Exception {
         GetBookRequest request = new GetBookRequest();
         log.info("Requesting infos on book id : " + id);
         log.debug("Service is located at : " + serviceLocation);
@@ -50,8 +51,11 @@ public class BookConnector extends WebServiceGatewaySupport {
         GetBookResponse response = (GetBookResponse) getWebServiceTemplate()
                 .marshalSendAndReceive(serviceLocation, request,
                         new SoapActionCallback("http://proj.gg.com/service/library-client"));
+        if (response.getBookFull() != null)
             return response;
-
+        else {
+            throw new Exception("Soap response was empty, seems you try to access invalid resources");
+        }
     }
 
     /**

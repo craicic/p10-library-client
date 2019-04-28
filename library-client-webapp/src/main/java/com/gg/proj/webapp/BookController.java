@@ -14,6 +14,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.ws.soap.client.SoapFaultClientException;
 
 import java.util.List;
 
@@ -32,19 +33,22 @@ public class BookController {
     @RequestMapping(value = "/book/get")
     public String book(Model model,
                        @RequestParam Integer id) {
-        BookResultModel resultModel = bookManager.getBookById(id);
-        log.info("");
+        try {
+            BookResultModel resultModel = bookManager.getBookById(id);
 
-        model.addAttribute("book", resultModel.getBookModel());
-        model.addAttribute("library", resultModel.getLibraryModel());
-        model.addAttribute("language", resultModel.getLanguageModel());
-        model.addAttribute("topics", resultModel.getTopicModelList());
+            model.addAttribute("book", resultModel.getBookModel());
+            model.addAttribute("library", resultModel.getLibraryModel());
+            model.addAttribute("language", resultModel.getLanguageModel());
+            model.addAttribute("topics", resultModel.getTopicModelList());
 
-        String shortDescription = resultModel.getBookModel().getSummary();
-        if (shortDescription.length() > 30)
-            shortDescription = shortDescription.substring(0, 30) + "...";
+            String shortDescription = resultModel.getBookModel().getSummary();
+            if (shortDescription.length() > 30)
+                shortDescription = shortDescription.substring(0, 30) + "...";
 
-        model.addAttribute("shortDescription", shortDescription);
+            model.addAttribute("shortDescription", shortDescription);
+        } catch (Exception e) {
+            return "error";
+        }
         return "books/book";
     }
 

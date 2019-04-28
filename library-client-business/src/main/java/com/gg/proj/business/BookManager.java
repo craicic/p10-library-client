@@ -52,7 +52,7 @@ public class BookManager {
 
 
 
-    public BookResultModel getBookById(Integer id) {
+    public BookResultModel getBookById(Integer id) throws Exception {
         GetBookResponse response;
         response = bookConsumer.getBook(id);
 
