@@ -33,7 +33,9 @@ public class LoanConnector extends WebServiceGatewaySupport {
 
     public FindAllLoansByUserIdResponse findAllLoansByUserId(Integer userId, String tokenUUID) {
         FindAllLoansByUserIdRequest request = new FindAllLoansByUserIdRequest();
-        log.debug("Requesting all current loans for user : " + userId);
+        log.info("Requesting Web service's method FindAllLoansByUserId with the userId : [" + userId + "]");
+        log.debug("Service is located at : " + serviceLocation);
+
         request.setUserId(userId);
         request.setTokenUUID(tokenUUID);
 
@@ -45,6 +47,9 @@ public class LoanConnector extends WebServiceGatewaySupport {
 
     public GetLoanResponse findById(int loanId, String tokenUUID) {
         GetLoanRequest request = new GetLoanRequest();
+        log.info("Requesting Web service's method GetLoan, with the loanId = [" + loanId + "] and an UUID");
+        log.debug("Service is located at : " + serviceLocation);
+
         request.setId(loanId);
         request.setTokenUUID(tokenUUID);
 
@@ -56,6 +61,9 @@ public class LoanConnector extends WebServiceGatewaySupport {
 
     public void extend(Loan loan, String tokenUUID) {
         ExtendLoanRequest request = new ExtendLoanRequest();
+        log.info("Requesting Web service's method ExtendLoan with the loan object = {" + loan.getId());
+        log.debug("Service is located at : " + serviceLocation);
+
         request.setLoan(loan);
         request.setTokenUUID(tokenUUID);
 

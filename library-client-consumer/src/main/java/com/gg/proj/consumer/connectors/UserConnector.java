@@ -33,10 +33,11 @@ public class UserConnector extends WebServiceGatewaySupport {
 
     public Token loginUser(String pseudo, String password) {
         LoginUserRequest request = new LoginUserRequest();
-        log.info("Preparing a Web Service call to login user : " + pseudo);
+        log.info("Requesting Web service's method LoginUser to login user : [" + pseudo + "]");
+        log.debug("Service is located at : " + serviceLocation);
+
         request.setPseudo(pseudo);
         request.setPassword(password);
-
 
         try {
             LoginUserResponse response = (LoginUserResponse) getWebServiceTemplate().
@@ -45,15 +46,18 @@ public class UserConnector extends WebServiceGatewaySupport {
             log.info("WS Call successful");
             return response.getToken();
         } catch (Exception e) {
-            log.warn("An exception has been catch : " + e.getMessage());
+
+            log.warn("An exception has been catch : " + e);
             return null;
         }
     }
 
     public String logoutUser(String tokenUUID) {
         LogoutUserRequest request = new LogoutUserRequest();
+        log.info("Requesting Web service's method LogoutUser to logout the user");
+        log.debug("Service is located at : " + serviceLocation);
+
         request.setTokenUUID(tokenUUID);
-        log.info("Preparing a Web Service call to logout the user with UUID : [" + tokenUUID + "]");
 
         try {
             LogoutUserResponse response = (LogoutUserResponse) getWebServiceTemplate().
@@ -62,7 +66,7 @@ public class UserConnector extends WebServiceGatewaySupport {
             log.info("WS Call successful");
             return response.getLogoutStatus();
         } catch (Exception e) {
-            log.warn("An exception has been catch : " + e.getMessage());
+            log.warn("An exception has been catch : " + e);
             return null;
         }
     }

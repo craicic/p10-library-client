@@ -37,7 +37,9 @@ public class ProfileConnector extends WebServiceGatewaySupport {
 
     public User getProfile(Integer userId, UUID tokenUUID) {
         GetProfileRequest request = new GetProfileRequest();
-        log.info("Requesting profile for user : " + userId + " with token : [" + tokenUUID.toString() + "]");
+        log.info("Requesting Web service's method GetProfile with the userId : [" + userId + "] and a UUID.");
+        log.debug("Service is located at : " + serviceLocation);
+
         request.setId(userId);
         request.setTokenUUID(tokenUUID.toString());
 

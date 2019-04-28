@@ -2,6 +2,7 @@ package com.gg.proj.consumer;
 
 import com.gg.proj.consumer.connectors.BookConnector;
 import com.gg.proj.consumer.wsdl.books.*;
+import com.sun.javaws.exceptions.InvalidArgumentException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

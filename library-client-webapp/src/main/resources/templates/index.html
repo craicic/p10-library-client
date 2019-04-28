@@ -20,7 +20,6 @@
     <div class="lead" th:text="#{welcome.message}">Welcome</div>
 
     <div sec:authorize="isAuthenticated()">
-        This content is only shown to users.
     </div>
 </div>
 

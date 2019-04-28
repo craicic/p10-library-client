@@ -11,9 +11,10 @@
 <div class="container-fluid">
 
     <div class="spacer"></div>
-    <h1 th:text="|${httpStatus} - ${httpStatus.reasonPhrase}|">404</h1>
+    <h3 th:text="|${httpStatus} - ${httpStatus.reasonPhrase}|">404</h3>
     <div class="spacer"></div>
     <p class="lead" th:text="${errorMessage}">Error java.lang.NullPointerException</p>
+
     <div class="spacer"></div>
     <a class="btn btn-primary" th:href="@{/}">Back to Home Page</a>
 </div>
