@@ -1,4 +1,4 @@
-# Client webapp for the [library project](https://github.com/xxjokerx/library)
+# Client webapp for the [library project](https://github.com/xxjokerx/p10-library)
   
 ## Description  
   
@@ -14,7 +14,7 @@ This application has been started via [Spring Initializr](https://start.spring.i
 
 It's a multi-modules application with the following structure :
 
-![Modules' dependencies](https://raw.githubusercontent.com/xxjokerx/library-client/master/documents/modules.png)
+![Modules' dependencies](https://raw.githubusercontent.com/xxjokerx/p10-library-client/master/documents/modules.png)
 
 lets review the stack used in main modules :
 
@@ -31,11 +31,11 @@ Finally **Spring annotation processor** dependency is here to manage custom prop
 
 ## Deployment
 
-Before you start the procedure, be sure you have deployed and ran [the associated web service](https://github.com/xxjokerx/library-service)
+Before you start the procedure, be sure you have deployed and ran [the associated web service](https://github.com/xxjokerx/p10-library-service)
 
 ##### 1 - Check the wsdl URL
 
-Depending on setting you choose for tomcat, at [step 9](https://github.com/xxjokerx/library-service#9---deploy-on-tomcat) you should find your wsdl on :\
+Depending on setting you choose for tomcat, at [step 9](https://github.com/xxjokerx/p10-library-service#9---deploy-on-tomcat) you should find your wsdl on :\
 http://localhost:8080/{webservice-context-folder}/ws/books.wsdl
 
 And same for users.wsdl, profiles.wsdl and loans.wsdl
@@ -45,8 +45,8 @@ Then unzip it.
 
 ##### 3 - Edit the configuration
 
-Go to library-client/library-client-webapp/src/main/application.properties then edit `consumer.webservice.uri=http://localhost:8080/{your-webservice-context-folder}/{webservice.location}`\
-Then edit library-client-consumer/pom.xml and configure the property base.wsdl.location as follow `<wsdl.base.location>http://localhost:8080/{your-webservice-context-folder}/{webservice.location}</wsdl.base.location>`
+Go to p10-library-client/library-client-webapp/src/main/application.properties then edit `consumer.webservice.uri=http://localhost:8080/{your-webservice-context-folder}/{webservice.location}`\
+Then edit p10-library-client-consumer/pom.xml and configure the property base.wsdl.location as follow `<wsdl.base.location>http://localhost:8080/{your-webservice-context-folder}/{webservice.location}</wsdl.base.location>`
 
 ##### 4 - Package the application
 
