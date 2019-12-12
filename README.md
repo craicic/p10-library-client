@@ -1,4 +1,4 @@
-# Client webapp for the [library project](https://github.com/xxjokerx/p10-library)
+# Client webapp 1.1.0-ALPHA-1 for the [library project](https://github.com/xxjokerx/p10-library)
   
 ## Description  
   
@@ -63,8 +63,14 @@ WAR or directory's URL : local path to your WAR
 
 Click Deploy and it's done ! 
 
-## Release notes
+## Changelog
 
-##### 1.0.0
+##### 1.0.0 - Dec 11 2016
 
 Provide a web interface for library's users.
+
+## Upcoming Version
+
+##### 1.1.0
+
+Will provide an advanced booking system
