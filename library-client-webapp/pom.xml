@@ -11,7 +11,7 @@
 
     <groupId>com.gg.proj.webapp</groupId>
     <artifactId>library-client-webapp</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>library-client-webapp</name>
     <description>THE WEBAPP</description>
     <packaging>war</packaging>

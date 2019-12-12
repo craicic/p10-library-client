@@ -62,3 +62,9 @@ Context-path : choose `/`\
 WAR or directory's URL : local path to your WAR
 
 Click Deploy and it's done ! 
+
+## Release notes
+
+##### 1.0.0
+
+Provide a web interface for library's users.
