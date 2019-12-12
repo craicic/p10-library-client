@@ -65,7 +65,7 @@ Click Deploy and it's done !
 
 ## Changelog
 
-##### 1.0.0 - Dec 11 2016
+##### 1.0.0 - 11 Dec 2019
 
 Provide a web interface for library's users.
 
