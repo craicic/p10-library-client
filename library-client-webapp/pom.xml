@@ -11,7 +11,7 @@
 
     <groupId>com.gg.proj.webapp</groupId>
     <artifactId>library-client-webapp</artifactId>
-    <version>1.0.1-BETA-1</version>
+    <version>1.0.1-BETA-3</version>
     <name>library-client-webapp</name>
     <description>THE WEBAPP</description>
     <packaging>war</packaging>
@@ -68,7 +68,7 @@
         <dependency>
             <groupId>com.gg.proj.business</groupId>
             <artifactId>library-client-business</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.1-BETA-1</version>
         </dependency>
         <dependency>
             <groupId>com.gg.proj.model</groupId>
