@@ -68,3 +68,13 @@ Click Deploy and it's done !
 ##### 1.0.0
 
 Provide a web interface for library's users.
+
+## Upcoming version
+
+##### 1.0.1
+
+Will address the bug list below
+
+## Known bug
+
+A user well extend a loan while out-of-date.

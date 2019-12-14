@@ -36,17 +36,17 @@
         <dependency>
             <groupId>com.gg.proj.consumer</groupId>
             <artifactId>library-client-consumer</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>com.gg.proj.model</groupId>
             <artifactId>library-client-model</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>com.gg.proj.technical</groupId>
             <artifactId>library-client-technical</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
