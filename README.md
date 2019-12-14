@@ -1,4 +1,4 @@
-# Client webapp 1.0.1-BETA-1 for the [library project](https://github.com/xxjokerx/p10-library)
+# Client webapp 1.0.1-BETA-2 for the [library project](https://github.com/xxjokerx/p10-library)
   
 ## Description  
   
