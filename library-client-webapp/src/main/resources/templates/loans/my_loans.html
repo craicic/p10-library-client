@@ -41,7 +41,7 @@
 
             </td>
             <td>
-                <a th:if="${!l.loanModel.extended}" class="btn btn-primary"
+                <a th:if="${!l.loanModel.extended and !l.loanModel.loanEndDate.isBefore(currentDate)}" class="btn btn-primary"
                    th:href="@{/loan/extend(loanId=${l.loanModel.id})}">Extend
                 </a>
             </td>

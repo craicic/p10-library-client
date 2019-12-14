@@ -5,7 +5,7 @@
 
     <groupId>com.gg.proj</groupId>
     <artifactId>library-client</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1-BETA-3</version>
     <name>library-client</name>
     <description>Client webapp</description>
     <packaging>pom</packaging>
