@@ -1,4 +1,4 @@
-# Client webapp for the [library project](https://github.com/xxjokerx/p10-library)
+# Client webapp 1.0.1-BETA-1 for the [library project](https://github.com/xxjokerx/p10-library)
   
 ## Description  
   
@@ -68,3 +68,14 @@ Click Deploy and it's done !
 ##### 1.0.0
 
 Provide a web interface for library's users.
+
+
+## Upcoming version
+
+##### 1.0.1
+
+Will address a bug listed below.
+
+## Known bug
+
+A user can extend a loan while out-of-date.
