@@ -2,14 +2,11 @@ package com.gg.proj.consumer;
 
 import com.gg.proj.consumer.connectors.BookConnector;
 import com.gg.proj.consumer.wsdl.books.*;
-import com.sun.javaws.exceptions.InvalidArgumentException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
-
-import java.util.List;
 
 /**
  * Consumer class, it call the connector
