@@ -1,4 +1,4 @@
-# Client webapp 1.1.0-ALPHA-1 for the [library project](https://github.com/xxjokerx/p10-library)
+# Client webapp 1.1.0-ALPHA-2 for the [library project](https://github.com/xxjokerx/p10-library)
   
 ## Description  
   
@@ -63,11 +63,17 @@ WAR or directory's URL : local path to your WAR
 
 Click Deploy and it's done ! 
 
-## Changelog
+## Release notes
 
-##### 1.0.0 - 11 Dec 2019
+##### 1.0.0
 
 Provide a web interface for library's users.
+
+## Current version
+
+##### 1.1.0-BETA-2
+
+Addressed a bug where a user could extend a loan while out-of-date.
 
 ## Upcoming Version
 
