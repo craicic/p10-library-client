@@ -11,7 +11,7 @@
 
     <groupId>com.gg.proj.technical</groupId>
     <artifactId>library-client-technical</artifactId>
-    <version>1.0.0</version>
+    <version>${technical.version}</version>
     <name>library-client-technical</name>
     <description>Technical module</description>
     <packaging>jar</packaging>

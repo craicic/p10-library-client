@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.gg.proj.consumer</groupId>
     <artifactId>library-client-consumer</artifactId>
-    <version>1.0.0</version>
+    <version>${consumer.version}</version>
     <name>library-client-consumer</name>
     <description>Consumer module</description>
     <packaging>jar</packaging>
@@ -43,12 +43,12 @@
         <dependency>
             <groupId>com.gg.proj.model</groupId>
             <artifactId>library-client-model</artifactId>
-            <version>1.0.0</version>
+            <version>${model.version}</version>
         </dependency>
         <dependency>
             <groupId>com.gg.proj.technical</groupId>
             <artifactId>library-client-technical</artifactId>
-            <version>1.0.0</version>
+            <version>${technical.version}</version>
         </dependency>
     </dependencies>
 
