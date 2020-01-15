@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.gg.proj.business</groupId>
     <artifactId>library-client-business</artifactId>
-    <version>${business.version}</version>
+    <version>${revision}</version>
     <name>library-client-business</name>
     <description>Business module</description>
     <packaging>jar</packaging>
@@ -18,6 +18,7 @@
     <properties>
         <java.version>1.8</java.version>
         <mapstruct.version>1.2.0.FINAL</mapstruct.version>
+        <revision>1.1.0-ALPHA-5</revision>
     </properties>
 
     <dependencies>
@@ -36,17 +37,17 @@
         <dependency>
             <groupId>com.gg.proj.consumer</groupId>
             <artifactId>library-client-consumer</artifactId>
-            <version>${consumer.version}</version>
+            <version>${revision}</version>
         </dependency>
         <dependency>
             <groupId>com.gg.proj.model</groupId>
             <artifactId>library-client-model</artifactId>
-            <version>${model.version}</version>
+            <version>${revision}</version>
         </dependency>
         <dependency>
             <groupId>com.gg.proj.technical</groupId>
             <artifactId>library-client-technical</artifactId>
-            <version>${technical.version}</version>
+            <version>${revision}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

@@ -15,12 +15,9 @@
     <div class="spacer"></div>
     <div class="jumbotron">
         <h1 class="display-4" th:text="${book.title}"></h1>
-        <p class="lead" th:text="${book.author}">This is a simple hero unit, a simple jumbotron-style component for
-            calling extra attention to featured content or information.</p>
+        <p class="lead" th:text="${book.author}"></p>
         <hr class="my-4">
-        <p th:text="${shortDescription}">It uses utility classes for typography and spacing to space content out within
-            the
-            larger container.</p>
+        <p th:text="${shortDescription}"></p>
         <p>
             <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample"
                     aria-expanded="false" aria-controls="collapseExample" th:text="#{book.detail.button}">
@@ -72,20 +69,42 @@
             <tr>
                 <td th:text="${language.name}"></td>
                 <td>
-                    <div th:each="topic :${topics}">
-                        <div th:text="${topic.name}" class="badge badge-primary"></div>
-                    </div>
+                    <span th:each="topic :${topics}">
+                        <span th:text="${topic.name}" class="badge badge-primary"></span>
+                    </span>
                 </td>
                 <th sec:authorize="isAuthenticated()">
                     <div th:if="${book.quantity > 0}" th:text="#{book.is.available}" class="badge badge-info"></div>
 
                     <div sec:authorize="isAuthenticated()" th:if="${book.quantity <= 0}"
                          th:text="#{book.isnot.available}" class="badge badge-danger"></div>
+                    <div th:if="${availableForBooking and !queueTooLong}" th:text="#{booking.bookable}" class="badge badge-info"></div>
+                    <div th:if="${availableForBooking and queueTooLong}" th:text="#{booking.booked}" class="badge badge-danger"></div>
                 </th>
             </tr>
             </tbody>
         </table>
-        <div class="spacer"></div>
+        <div th:if="${availableForBooking}" >
+            <div class="spacer"></div>
+            <h3 th:text="#{booking.detail.info}">BOOKING INFORMATION</h3>
+            <div class="spacer"></div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th th:text="#{booking.next.return}">NEXT RETURN DATE</th>
+                    <th th:text="#{booking.queue.size}">QUEUE SIZE</th>
+                    <th th:text="#{booking.bookable}">BOOKABLE</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td th:text="${nextReturnDate}"></td>
+                    <td th:text="${bookingQueue}"></td>
+                    <td th:text="${queueTooLong}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 </body>

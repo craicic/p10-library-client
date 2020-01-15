@@ -11,7 +11,7 @@
 
     <groupId>com.gg.proj.webapp</groupId>
     <artifactId>library-client-webapp</artifactId>
-    <version>${webapp.version}</version>
+    <version>${revision}</version>
     <name>library-client-webapp</name>
     <description>THE WEBAPP</description>
     <packaging>war</packaging>
@@ -21,6 +21,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <jasypt.version>2.1.1</jasypt.version>
+        <revision>1.1.0-ALPHA-5</revision>
     </properties>
 
     <dependencies>
@@ -68,17 +69,17 @@
         <dependency>
             <groupId>com.gg.proj.business</groupId>
             <artifactId>library-client-business</artifactId>
-            <version>${business.version}</version>
+            <version>${revision}</version>
         </dependency>
         <dependency>
             <groupId>com.gg.proj.model</groupId>
             <artifactId>library-client-model</artifactId>
-            <version>${model.version}</version>
+            <version>${revision}</version>
         </dependency>
         <dependency>
             <groupId>com.gg.proj.technical</groupId>
             <artifactId>library-client-technical</artifactId>
-            <version>${technical.version}</version>
+            <version>${revision}</version>
         </dependency>
     </dependencies>
 
