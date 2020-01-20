@@ -1,9 +1,6 @@
 package com.gg.proj.consumer;
 
-import com.gg.proj.consumer.connectors.BookConnector;
-import com.gg.proj.consumer.connectors.LoanConnector;
-import com.gg.proj.consumer.connectors.ProfileConnector;
-import com.gg.proj.consumer.connectors.UserConnector;
+import com.gg.proj.consumer.connectors.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -93,6 +90,24 @@ public class ConsumerConfiguration {
         client.setDefaultUri(consumerProperties.getUri());
         client.setMarshaller(loanMarshaller);
         client.setUnmarshaller(loanMarshaller);
+        return client;
+    }
+
+    @Bean
+    public Jaxb2Marshaller bookingMarshaller() {
+        Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
+        // this package must match the package in the <generatePackage> specified in
+        // pom.xml
+        marshaller.setContextPath("com.gg.proj.consumer.wsdl.bookings");
+        return marshaller;
+    }
+
+    @Bean
+    public BookingConnector bookingConnector(@Autowired Jaxb2Marshaller bookingMarshaller) {
+        BookingConnector client = new BookingConnector(consumerProperties);
+        client.setDefaultUri(consumerProperties.getUri());
+        client.setMarshaller(bookingMarshaller);
+        client.setUnmarshaller(bookingMarshaller);
         return client;
     }
 }

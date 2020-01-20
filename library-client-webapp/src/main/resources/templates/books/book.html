@@ -78,13 +78,15 @@
 
                     <div sec:authorize="isAuthenticated()" th:if="${book.quantity <= 0}"
                          th:text="#{book.isnot.available}" class="badge badge-danger"></div>
-                    <div th:if="${availableForBooking and !queueTooLong}" th:text="#{booking.bookable}" class="badge badge-info"></div>
-                    <div th:if="${availableForBooking and queueTooLong}" th:text="#{booking.booked}" class="badge badge-danger"></div>
+                    <div th:if="${availableForBooking and !queueTooLong}" th:text="#{booking.bookable}"
+                         class="badge badge-info"></div>
+                    <div th:if="${availableForBooking and queueTooLong}" th:text="#{booking.booked}"
+                         class="badge badge-danger"></div>
                 </th>
             </tr>
             </tbody>
         </table>
-        <div th:if="${availableForBooking}" >
+        <div th:if="${availableForBooking}">
             <div class="spacer"></div>
             <h3 th:text="#{booking.detail.info}">BOOKING INFORMATION</h3>
             <div class="spacer"></div>
@@ -93,17 +95,22 @@
                 <tr>
                     <th th:text="#{booking.next.return}">NEXT RETURN DATE</th>
                     <th th:text="#{booking.queue.size}">QUEUE SIZE</th>
-                    <th th:text="#{booking.bookable}">BOOKABLE</th>
+                    <th th:if="${availableForBooking and !queueTooLong}" th:text="#{booking.action}">ACTION</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <td th:text="${nextReturnDate}"></td>
                     <td th:text="${bookingQueue}"></td>
-                    <td th:text="${queueTooLong}"></td>
+                    <td th:if="${availableForBooking and !queueTooLong}">
+                        <button class="btn btn-primary" type="button" th:text="#{booking.perform}" th:href="@{/booking/perform_booking(bookId=${book.id})}">
+                            PERFORM BOOKING
+                        </button>
+                    </td>
                 </tr>
                 </tbody>
             </table>
+            <div class="spacer"></div>
         </div>
     </div>
 </div>

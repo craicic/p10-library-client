@@ -20,6 +20,9 @@
                     <a class="nav-link" th:href="@{/loan/my_loans}" th:text="#{nav.loans}">My loans</a>
                 </li>
                 <li sec:authorize="hasRole('ROLE_USER')" class="nav-item active">
+                    <a class="nav-link" th:href="@{/booking/my_bookings}" th:text="#{nav.bookings}">My bookings</a>
+                </li>
+                <li sec:authorize="hasRole('ROLE_USER')" class="nav-item active">
                     <a class="nav-link" th:href="@{/perform_logout}" th:text="#{nav.logout}">Logout<span
                             class="sr-only">(current)</span></a>
                 </li>
