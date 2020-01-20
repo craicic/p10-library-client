@@ -60,4 +60,20 @@ public class BookingConnector extends WebServiceGatewaySupport {
             throw new SOAPException("Soap response was empty, seems you try to access invalid resources");
         }
     }
+
+    public CancelBookingResponse cancelBooking(Booking booking, String tokenUUID) throws SOAPException {
+        CancelBookingRequest request = new CancelBookingRequest();
+
+        request.setBooking(booking);
+        request.setTokenUUID(tokenUUID);
+
+        CancelBookingResponse response = (CancelBookingResponse) getWebServiceTemplate()
+                .marshalSendAndReceive(serviceLocation, request,
+                        new SoapActionCallback("http://proj.gg.com/service/library-client"));
+        if (response != null)
+            return response;
+        else {
+            throw new SOAPException("Soap response was empty, seems you try to access invalid resources");
+        }
+    }
 }

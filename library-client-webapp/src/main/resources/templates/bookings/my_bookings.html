@@ -24,15 +24,23 @@
             <th th:text="#{book.title}">TITLE</th>
             <th th:text="#{booking.next.return}">NEXT RETURN DATE</th>
             <th th:text="#{booking.position.in.queue}">YOUR POSITION IN QUEUE</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="b:${bookings}">
             <td th:text="${b.bookMinModel.author}"></td>
-            <td th:text="${b.bookMinModel.title}"
-            th:href="@{book(id=${b.bookingModel.bookId})}"></td>
+            <td>
+                <a th:text="${b.bookMinModel.title}" th:href="@{/book/get(id=${b.bookingModel.bookId})}"></a>
+            </td>
             <td th:text="${b.nearestReturnDate}"></td>
             <td th:text="${b.positionInQueue}"></td>
+            <td>
+                <a class="btn btn-warning"
+                   th:text="#{cancel}"
+                   th:href="@{/booking/cancel(bookingId=${b.bookingModel.id}, bookId=${b.bookingModel.bookId})}">Cancel
+                </a>
+            </td>
         </tr>
         </tbody>
     </table>

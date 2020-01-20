@@ -2,6 +2,7 @@ package com.gg.proj.business;
 
 import com.gg.proj.business.mapper.BookingMapper;
 import com.gg.proj.consumer.BookingConsumer;
+import com.gg.proj.consumer.wsdl.bookings.Booking;
 import com.gg.proj.consumer.wsdl.bookings.BookingInfo;
 import com.gg.proj.consumer.wsdl.bookings.BookingMin;
 import com.gg.proj.consumer.wsdl.bookings.PerformBookingResponse;
@@ -74,5 +75,22 @@ public class BookingManager {
         log.info("Fetched a list of " + bookingInfoModelList.size() + " element(s)");
 
         return bookingInfoModelList;
+    }
+
+    public void cancelBooking(int bookingId, int bookId, Integer userId, UUID tokenUUID) throws SOAPException, CredentialException {
+        log.info("Entering PerformBooking... userId=" + userId + ", bookingId=" + bookingId);
+
+        if (userId == null || tokenUUID == null)
+            throw new CredentialException("User and tokenUUID can't be null");
+
+        Booking booking = new Booking();
+        booking.setId(bookingId);
+        booking.setBookId(bookId);
+        booking.setUserId(userId);
+
+        Integer confirmationCode = bookingConsumer.cancelBooking(booking, tokenUUID.toString());
+
+        log.info("Cancel booking finish with confirmationCode=" + confirmationCode);
+
     }
 }

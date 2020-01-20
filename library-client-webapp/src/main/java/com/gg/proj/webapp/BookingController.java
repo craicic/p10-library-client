@@ -52,7 +52,7 @@ public class BookingController {
     @RequestMapping(value="/booking/my_bookings")
     public String myBooking(Model model) {
         UserInfo userInfo = (UserInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        List<BookingInfoModel> bookings = null;
+        List<BookingInfoModel> bookings;
         try {
             bookings = bookingManager.getMyBookings(userInfo.getId(), userInfo.getTokenUUID());
         } catch (SOAPException e) {
@@ -64,5 +64,23 @@ public class BookingController {
         }
         model.addAttribute("bookings", bookings);
         return "bookings/my_bookings";
+    }
+
+    @RequestMapping(value="/booking/cancel")
+    public RedirectView cancelBooking(RedirectAttributes attributes,
+                                      @RequestParam int bookingId,
+                                      @RequestParam int bookId
+                                      ) {
+        UserInfo userInfo = (UserInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        try {
+            bookingManager.cancelBooking(bookingId, bookId, userInfo.getId(), userInfo.getTokenUUID());
+        } catch (SOAPException e) {
+            log.error("SOAPException raised and caught - stacktrace : " + e);
+            return new RedirectView("error");
+        } catch (CredentialException e) {
+            log.error("CredentialException raised and caught - stacktrace : " + e);
+            return new RedirectView("error");
+        }
+        return new RedirectView("booking/my_bookings");
     }
 }

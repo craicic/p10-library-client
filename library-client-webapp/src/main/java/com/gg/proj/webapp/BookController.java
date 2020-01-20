@@ -29,7 +29,7 @@ public class BookController {
         this.bookManager = bookManager;
     }
 
-    @RequestMapping(value = "book/get")
+    @RequestMapping(value = "/book/get")
     public String book(Model model,
                        @RequestParam Integer id) {
 //        try {
