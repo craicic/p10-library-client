@@ -95,7 +95,7 @@
                 <tr>
                     <th th:text="#{booking.next.return}">NEXT RETURN DATE</th>
                     <th th:text="#{booking.queue.size}">QUEUE SIZE</th>
-                    <th th:if="${availableForBooking and !queueTooLong}" th:text="#{booking.action}">ACTION</th>
+                    <th th:if="${availableForBooking and !queueTooLong}"></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -103,9 +103,9 @@
                     <td th:text="${nextReturnDate}"></td>
                     <td th:text="${bookingQueue}"></td>
                     <td th:if="${availableForBooking and !queueTooLong}">
-                        <button class="btn btn-primary" type="button" th:text="#{booking.perform}" th:href="@{/booking/perform_booking(bookId=${book.id})}">
+                        <a class="btn btn-primary" type="button" th:text="#{booking.perform}" th:href="@{/booking/perform_booking(bookId=${book.id})}">
                             PERFORM BOOKING
-                        </button>
+                        </a>
                     </td>
                 </tr>
                 </tbody>

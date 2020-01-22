@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
+import org.springframework.ws.soap.client.SoapFaultClientException;
 
 import javax.security.auth.login.CredentialException;
 import javax.xml.soap.SOAPException;
@@ -46,7 +47,7 @@ public class BookingController {
             log.error("SOAPException raised and caught - stacktrace : " + e);
             return new RedirectView("error");
         }
-        return new RedirectView("booking/my_bookings");
+        return new RedirectView("/booking/my_bookings");
     }
 
     @RequestMapping(value="/booking/my_bookings")
@@ -81,6 +82,6 @@ public class BookingController {
             log.error("CredentialException raised and caught - stacktrace : " + e);
             return new RedirectView("error");
         }
-        return new RedirectView("booking/my_bookings");
+        return new RedirectView("/booking/my_bookings");
     }
 }
