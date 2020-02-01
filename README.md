@@ -63,18 +63,18 @@ WAR or directory's URL : local path to your WAR
 
 Click Deploy and it's done ! 
 
-## Release notes
+## Changelog
 
-##### 1.0.0
+##### 1.0.0 - 11 Dec 2019
 
 Provide a web interface for library's users.
 
-##### 1.0.1
+##### 1.0.1 - 14 Dec 2019
 
 Addressed a bug where a user could extend a loan while out-of-date.
 
 ## Current release version
 
-##### 1.1.0
+##### 1.1.0 - 1 Feb 2020
 
 Provide an advanced booking system
