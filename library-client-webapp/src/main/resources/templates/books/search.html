@@ -41,9 +41,8 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label title="Available" th:text="#{book.search.select.available}">Available
-                            <input type="checkbox" th:field="*{available}" id="Available"/>
-                        </label>
+                        <label for="Available" title="Available" th:text="#{book.search.select.available}">Available</label>
+                        <input type="checkbox" th:field="*{available}" id="Available"/>
                     </div>
                     <button type="submit" class="btn btn-primary" th:text="#{book.search.submit}">Submit</button>
                 </form>

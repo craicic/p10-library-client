@@ -3,7 +3,7 @@ package com.gg.proj.webapp;
 import com.gg.proj.authentication.UserInfo;
 import com.gg.proj.business.BookManager;
 import com.gg.proj.model.BookModel;
-import com.gg.proj.model.complex.BookResultModel;
+import com.gg.proj.model.complex.BookAndBookingInfoModel;
 import com.gg.proj.model.complex.FormResultModel;
 import com.gg.proj.model.complex.PagedBookModel;
 import com.gg.proj.model.complex.SearchResultModel;
@@ -14,7 +14,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.ws.soap.client.SoapFaultClientException;
 
 import java.util.List;
 
@@ -33,19 +32,42 @@ public class BookController {
     @RequestMapping(value = "/book/get")
     public String book(Model model,
                        @RequestParam Integer id) {
+//        try {
+//            BookResultModel resultModel = bookManager.getBookById(id);
+//
+//            model.addAttribute("book", resultModel.getBookModel());
+//            model.addAttribute("library", resultModel.getLibraryModel());
+//            model.addAttribute("language", resultModel.getLanguageModel());
+//            model.addAttribute("topics", resultModel.getTopicModelList());
+//
+//            String shortDescription = resultModel.getBookModel().getSummary();
+//            if (shortDescription.length() > 30)
+//                shortDescription = shortDescription.substring(0, 30) + "...";
+//
+//            model.addAttribute("shortDescription", shortDescription);
+//        } catch (Exception e) {
+//            return "error";
+//        }
+//        return "books/book";
         try {
-            BookResultModel resultModel = bookManager.getBookById(id);
+            BookAndBookingInfoModel bookAndBookingInfoModel = bookManager.getBookAndBookingInfoById(id);
 
-            model.addAttribute("book", resultModel.getBookModel());
-            model.addAttribute("library", resultModel.getLibraryModel());
-            model.addAttribute("language", resultModel.getLanguageModel());
-            model.addAttribute("topics", resultModel.getTopicModelList());
+            model.addAttribute("book", bookAndBookingInfoModel.getBookModel());
 
-            String shortDescription = resultModel.getBookModel().getSummary();
+            model.addAttribute("library", bookAndBookingInfoModel.getLibraryModel());
+            model.addAttribute("language", bookAndBookingInfoModel.getLanguageModel());
+            model.addAttribute("topics", bookAndBookingInfoModel.getTopicModelList());
+
+            model.addAttribute("nextReturnDate", bookAndBookingInfoModel.getNextReturnDate());
+            model.addAttribute("bookingQueue", bookAndBookingInfoModel.getBookingQueue());
+            model.addAttribute("queueTooLong", bookAndBookingInfoModel.isQueueTooLong());
+            model.addAttribute("availableForBooking", bookAndBookingInfoModel.isAvailableForBooking());
+
+            String shortDescription = bookAndBookingInfoModel.getBookModel().getSummary();
             if (shortDescription.length() > 30)
                 shortDescription = shortDescription.substring(0, 30) + "...";
-
             model.addAttribute("shortDescription", shortDescription);
+
         } catch (Exception e) {
             return "error";
         }

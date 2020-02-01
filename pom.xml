@@ -5,12 +5,14 @@
 
     <groupId>com.gg.proj</groupId>
     <artifactId>library-client</artifactId>
-    <version>1.0.1-BETA-3</version>
+    <version>${revision}</version>
     <name>library-client</name>
     <description>Client webapp</description>
     <packaging>pom</packaging>
 
     <properties>
+        <revision>1.1.0-ALPHA-8</revision>
+        <!-- All modules receive the parent pom version in order to simplify versioning -->
         <java.version>1.8</java.version>
     </properties>
 

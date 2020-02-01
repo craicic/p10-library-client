@@ -10,6 +10,7 @@ import com.gg.proj.model.BookModel;
 import com.gg.proj.model.LanguageModel;
 import com.gg.proj.model.LibraryModel;
 import com.gg.proj.model.TopicModel;
+import com.gg.proj.model.complex.BookAndBookingInfoModel;
 import com.gg.proj.model.complex.BookResultModel;
 import com.gg.proj.model.complex.PagedBookModel;
 import com.gg.proj.model.complex.SearchResultModel;
@@ -48,8 +49,6 @@ public class BookManager {
         this.libraryMapper = libraryMapper;
         this.topicMapper = topicMapper;
     }
-
-
 
     public BookResultModel getBookById(Integer id) throws Exception {
         GetBookResponse response;
@@ -111,5 +110,13 @@ public class BookManager {
                 response.getTotalPages());
         log.debug("Result found : " + pagedBookModel);
         return pagedBookModel;
+    }
+
+    public BookAndBookingInfoModel getBookAndBookingInfoById(Integer bookId) throws Exception {
+        BookAndBookingInfo bookAndBookingInfo = bookConsumer.getBookAndBookingInfoById(bookId);
+        // Mapping
+        BookAndBookingInfoModel bookAndBookingInfoModel = bookMapper.bookAndBookingInfoDTOToModel(bookAndBookingInfo);
+        log.info("Found book : " + bookAndBookingInfoModel);
+        return bookAndBookingInfoModel;
     }
 }

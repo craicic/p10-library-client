@@ -145,4 +145,28 @@ public class BookConnector extends WebServiceGatewaySupport {
                 new SoapActionCallback("http://proj.gg.com/service/library-client"));
         return response.getLanguage();
     }
+
+    /**
+     * <p>Directly calls the Web-service's method getBook() from the Book service. It pass the id of a book
+     * and the WS provide the matching book.</p>
+     *
+     * @param id the id of the book
+     * @return a GetBookResponse.
+     */
+    public GetBookAndBookingInfoResponse getBookAndBookingInfoById(Integer id) throws Exception {
+        GetBookAndBookingInfoRequest request = new GetBookAndBookingInfoRequest();
+        log.info("Requesting infos on book id : " + id);
+        log.debug("Service is located at : " + serviceLocation);
+
+        request.setBookId(id);
+
+        GetBookAndBookingInfoResponse response = (GetBookAndBookingInfoResponse) getWebServiceTemplate()
+                .marshalSendAndReceive(serviceLocation, request,
+                        new SoapActionCallback("http://proj.gg.com/service/library-client"));
+        if (response.getBookAndBookingInfo() != null)
+            return response;
+        else {
+            throw new Exception("Soap response was empty, seems you try to access invalid resources");
+        }
+    }
 }

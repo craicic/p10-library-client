@@ -48,4 +48,8 @@ public class BookConsumer extends WebServiceGatewaySupport {
         return bookConnector.getLanguage(languageId);
     }
 
+    public BookAndBookingInfo getBookAndBookingInfoById(Integer bookId) throws Exception {
+        return bookConnector.getBookAndBookingInfoById(bookId).getBookAndBookingInfo();
+    }
+
 }

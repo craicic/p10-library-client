@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="fragments/head :: header">
+    <title id="pageTitle" th:text="#{booking.page.title}">Consult bookings</title>
+</head>
+
+<body>
+
+<header>
+    <div th:include="fragments/header :: navbarbootstrap"></div>
+</header>
+
+<div class="container-fluid">
+    <div class="spacer"></div>
+    <h3 th:text="#{booking.page.title}">My Loans</h3>
+    <div class="spacer"></div>
+    <!-- if no loan is active you don't display the table -->
+    <div class="lead" th:if="${bookings.isEmpty()}" th:text="#{booking.none}">You have no booking at the moment</div>
+    <table class="table" th:unless="${bookings.isEmpty()}">
+        <thead>
+        <tr>
+            <th th:text="#{book.author}">AUTHOR</th>
+            <th th:text="#{book.title}">TITLE</th>
+            <th th:text="#{booking.next.return}">NEXT RETURN DATE</th>
+            <th th:text="#{booking.position.in.queue}">YOUR POSITION IN QUEUE</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="b:${bookings}">
+            <td th:text="${b.bookMinModel.author}"></td>
+            <td>
+                <a th:text="${b.bookMinModel.title}" th:href="@{/book/get(id=${b.bookingModel.bookId})}"></a>
+            </td>
+            <td th:text="${b.nearestReturnDate}"></td>
+            <td th:text="${b.positionInQueue}"></td>
+            <td>
+                <a class="btn btn-warning"
+                   th:text="#{cancel}"
+                   th:href="@{/booking/cancel(bookingId=${b.bookingModel.id}, bookId=${b.bookingModel.bookId})}">Cancel
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
