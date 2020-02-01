@@ -11,7 +11,7 @@
     <packaging>pom</packaging>
 
     <properties>
-        <revision>1.1.0-ALPHA-8</revision>
+        <revision>1.1.0</revision>
         <!-- All modules receive the parent pom version in order to simplify versioning -->
         <java.version>1.8</java.version>
     </properties>

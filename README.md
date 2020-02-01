@@ -1,4 +1,4 @@
-# Client webapp 1.1.0-ALPHA-8 for the [library project](https://github.com/xxjokerx/p10-library)
+# Client webapp 1.1.0 for the [library project](https://github.com/xxjokerx/p10-library)
   
 ## Description  
   
@@ -69,14 +69,12 @@ Click Deploy and it's done !
 
 Provide a web interface for library's users.
 
-## Current release version
-
 ##### 1.0.1
 
 Addressed a bug where a user could extend a loan while out-of-date.
 
-## Upcoming Version
+## Current release version
 
 ##### 1.1.0
 
-Will provide an advanced booking system
+Provide an advanced booking system
